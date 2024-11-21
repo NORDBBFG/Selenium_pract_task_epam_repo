@@ -23,18 +23,6 @@ namespace Selenium_pract_task.POM.EpamMainPage.EpamCareersPage
             wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
         }
 
-        public EpamCareersPageContext verifyCookiesHendler()
-        {
-            var element = epamCereersPage.buttonAcceptAllCookies;
-            var cond = element.Enabled;
-            if (cond)
-            {
-                element.Click();
-                return this;
-            }
-            return this;
-        }
-
         public EpamCareersPageContext fillInputKeyword(string keyword)
         {
             epamCereersPage.inputKeyword.SendKeys(keyword);
