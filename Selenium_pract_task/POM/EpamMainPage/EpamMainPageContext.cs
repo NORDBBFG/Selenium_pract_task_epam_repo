@@ -9,7 +9,7 @@ namespace Selenium_pract_task.POM.EpamMainPage
     internal class EpamMainPageContext : AbstractPageContext
     {
         private EpamMainPage epamMainPage;
-        private WebDriverWait wait;
+        private readonly WebDriverWait wait;
 
         public EpamMainPageContext(IWebDriver driver)
         {
@@ -18,15 +18,36 @@ namespace Selenium_pract_task.POM.EpamMainPage
             wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
         }
 
-        public EpamMainPageContext VerifyCookiesHendler()
+        public EpamMainPageContext VerifyCookiesHandler()
         {
-            var element = epamMainPage.ButtonAcceptAllCookies;
-            var cond = element.Enabled;
-            if (cond)
+            try
             {
-                element.Click();
+                var element = wait.Until(driver =>
+                {
+                    try
+                    {
+                        var cookieButton = epamMainPage.ButtonAcceptAllCookies;
+
+                        if (cookieButton != null && cookieButton.Displayed && cookieButton.Enabled)
+                        {
+                            cookieButton.Click();
+                            return cookieButton;
+                        }
+                    }
+                    catch (ElementClickInterceptedException)
+                    {
+                        return null;
+                    }
+
+                    return null;
+                });
+
+            }
+            catch (WebDriverTimeoutException)
+            {
                 return this;
             }
+
             return this;
         }
 

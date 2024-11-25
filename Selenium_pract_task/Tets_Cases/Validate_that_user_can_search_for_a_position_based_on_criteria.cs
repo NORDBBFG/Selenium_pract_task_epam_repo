@@ -19,7 +19,7 @@ namespace Selenium_pract_task.Tets_Cases
             //Assert
             driver.Navigate().GoToUrl("https://www.epam.com/");
             var epamMainPageContext = new EpamMainPageContext(driver);
-            epamMainPageContext.VerifyCookiesHendler()
+            epamMainPageContext.VerifyCookiesHandler()
                 .ClickOnCareersLink()
                 .ScrolePage<EpamCareersPageContext>(8)
                 .CheckRemoutCheckBox()

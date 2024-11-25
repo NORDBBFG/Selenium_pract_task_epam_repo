@@ -4,6 +4,7 @@ using OpenQA.Selenium.Edge;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium;
 using Microsoft.Extensions.Configuration;
+using Selenium_pract_task.FileHelper;
 
 namespace Selenium_pract_task.Entities.AbstractEntities
 {
@@ -15,6 +16,7 @@ namespace Selenium_pract_task.Entities.AbstractEntities
         [SetUp]
         public void Setup()
         {
+            JsonHelper.EnsureJsonFileExists();
             var configPath = Path.Combine(Directory.GetCurrentDirectory(), "browserconfig.json");
             _browserConfig = new ConfigurationBuilder()
                 .AddJsonFile(configPath)
