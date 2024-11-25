@@ -1,16 +1,10 @@
-﻿using OpenQA.Selenium.Support.UI;
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
 using Selenium_pract_task.Entities.AbstractEntities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using NUnit.Framework;
 
 namespace Selenium_pract_task.POM.EpamMainPage.EpamSearchPage
 {
-    internal class EpamSearchPageContext : AbstractPageContext
+    public class EpamSearchPageContext : AbstractPageContext
     {
         private EpamSearchPage epamSearchPage;
 

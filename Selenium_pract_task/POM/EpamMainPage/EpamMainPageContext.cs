@@ -6,7 +6,7 @@ using Selenium_pract_task.POM.EpamMainPage.EpamSearchPage;
 
 namespace Selenium_pract_task.POM.EpamMainPage
 {
-    internal class EpamMainPageContext : AbstractPageContext
+    public class EpamMainPageContext : AbstractPageContext
     {
         private EpamMainPage epamMainPage;
         private readonly WebDriverWait wait;

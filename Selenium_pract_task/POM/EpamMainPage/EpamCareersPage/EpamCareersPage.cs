@@ -3,7 +3,7 @@ using Selenium_pract_task.Entities.AbstractEntities;
 
 namespace Selenium_pract_task.POM.EpamMainPage.EpamCareersPage
 {
-    internal class EpamCareersPage : AbstractPage
+    public class EpamCareersPage : AbstractPage
     {
         public EpamCareersPage(IWebDriver driver)
         {

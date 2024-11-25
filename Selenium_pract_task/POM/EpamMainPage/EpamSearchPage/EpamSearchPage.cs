@@ -1,15 +1,9 @@
 ﻿using OpenQA.Selenium;
 using Selenium_pract_task.Entities.AbstractEntities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static OpenQA.Selenium.BiDi.Modules.BrowsingContext.Locator;
 
 namespace Selenium_pract_task.POM.EpamMainPage.EpamSearchPage
 {
-    internal class EpamSearchPage : AbstractPage
+    public class EpamSearchPage : AbstractPage
     {
         public EpamSearchPage(IWebDriver driver)
         {

@@ -2,7 +2,7 @@
 
 namespace Selenium_pract_task.Entities.AbstractEntities
 {
-        abstract class AbstractPage
+        public abstract class AbstractPage
         {
             protected IWebDriver driver;
         }

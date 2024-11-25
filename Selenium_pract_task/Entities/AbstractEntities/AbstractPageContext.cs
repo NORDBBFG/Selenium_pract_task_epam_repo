@@ -1,10 +1,9 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Support.UI;
 
 namespace Selenium_pract_task.Entities.AbstractEntities
 {
-    abstract class AbstractPageContext : AbstractPage
+    public abstract class AbstractPageContext : AbstractPage
     {
         public T VerifyPageTitle<T>(string expectedTitle) where T : class
         {

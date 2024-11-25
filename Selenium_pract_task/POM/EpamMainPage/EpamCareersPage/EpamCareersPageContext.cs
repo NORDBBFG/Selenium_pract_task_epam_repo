@@ -1,17 +1,11 @@
 ﻿using OpenQA.Selenium.Support.UI;
 using OpenQA.Selenium;
 using Selenium_pract_task.Entities.AbstractEntities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using OpenQA.Selenium.Interactions;
 using Selenium_pract_task.POM.EpamMainPage.EpamJobPage;
 
 namespace Selenium_pract_task.POM.EpamMainPage.EpamCareersPage
 {
-    internal class EpamCareersPageContext : AbstractPageContext
+    public class EpamCareersPageContext : AbstractPageContext
     {
         private EpamCareersPage epamCereersPage;
         private WebDriverWait wait;
