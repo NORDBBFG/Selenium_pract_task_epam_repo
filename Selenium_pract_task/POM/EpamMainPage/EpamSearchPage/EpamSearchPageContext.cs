@@ -20,9 +20,9 @@ namespace Selenium_pract_task.POM.EpamMainPage.EpamSearchPage
             epamSearchPage = new EpamSearchPage(driver);
         }
 
-        public EpamSearchPageContext verifyAllSerchedLinksContainsValue(string value, bool expectedResult = true)
+        public EpamSearchPageContext VerifyAllSerchedLinksContainsValue(string value, bool expectedResult = true)
         {
-            foreach (var link in epamSearchPage.foundLinks)
+            foreach (var link in epamSearchPage.FoundLinks)
             {
                 string linkText = link.Text;
                 var actualResult = linkText.Contains(value);

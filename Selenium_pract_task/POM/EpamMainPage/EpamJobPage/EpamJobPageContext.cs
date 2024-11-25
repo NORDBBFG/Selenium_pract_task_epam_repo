@@ -23,9 +23,9 @@ namespace Selenium_pract_task.POM.EpamMainPage.EpamJobPage
             wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
         }
 
-        public EpamJobPageContext verifyJobTitleContainsValue(string value,bool expectedResult = true)
+        public EpamJobPageContext VerifyJobTitleContainsValue(string value,bool expectedResult = true)
         {
-            string titleText = epamJobPage.jobeTitle.Text;
+            string titleText = epamJobPage.JobeTitle.Text;
             var actualResult = titleText.Contains(value);
             Assert.That(expectedResult, Is.EqualTo(actualResult), $"Job title: [{titleText}], do not contains expected value: [{value}].");
 

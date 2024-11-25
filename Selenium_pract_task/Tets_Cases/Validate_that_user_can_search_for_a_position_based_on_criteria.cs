@@ -19,16 +19,16 @@ namespace Selenium_pract_task.Tets_Cases
             //Assert
             driver.Navigate().GoToUrl("https://www.epam.com/");
             var epamMainPageContext = new EpamMainPageContext(driver);
-            epamMainPageContext.verifyCookiesHendler()
-                .clickOnCareersLink()
+            epamMainPageContext.VerifyCookiesHendler()
+                .ClickOnCareersLink()
                 .ScrolePage<EpamCareersPageContext>(8)
-                .checkRemoutCheckBox()
-                .fillInputKeyword(programinLanguage)
-                .clickInputLocation()
-                .selectInputLocationAllLocations()
-                .clickButtonFind()
-                .clickButtonViewAndApplyLastElement()
-                .verifyJobTitleContainsValue(programinLanguage);
+                .CheckRemoutCheckBox()
+                .FillInputKeyword(programinLanguage)
+                .ClickInputLocation()
+                .SelectInputLocationAllLocations()
+                .ClickButtonFind()
+                .ClickButtonViewAndApplyLastElement()
+                .VerifyJobTitleContainsValue(programinLanguage);
         }
     }
 }

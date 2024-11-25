@@ -15,6 +15,6 @@ namespace Selenium_pract_task.POM.EpamMainPage.EpamJobPage
             this.driver = driver;
         }
 
-        public IWebElement jobeTitle => driver.FindElement(By.XPath("//h1[@class='vacancy-details-23__job-title']"));
+        public IWebElement JobeTitle => driver.FindElement(By.XPath("//h1[@class='vacancy-details-23__job-title']"));
     }
 }

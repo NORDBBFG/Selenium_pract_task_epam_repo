@@ -24,11 +24,11 @@ namespace Selenium_pract_task.Tets_Cases
             //Assert
             driver.Navigate().GoToUrl("https://www.epam.com/");
             var epamMainPageContext = new EpamMainPageContext(driver);
-            epamMainPageContext.verifyCookiesHendler()
-                .clickOnIconMagnifier()
-                .setTextInputSearchField("Automation")
-                .clickButtonFind()
-                .verifyAllSerchedLinksContainsValue("Automation");
+            epamMainPageContext.VerifyCookiesHendler()
+                .ClickOnIconMagnifier()
+                .SetTextInputSearchField("Automation")
+                .ClickButtonFind()
+                .VerifyAllSerchedLinksContainsValue("Automation");
         }
     }
 }
