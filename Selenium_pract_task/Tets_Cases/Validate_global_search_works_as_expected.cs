@@ -6,23 +6,18 @@ namespace Selenium_pract_task.Tets_Cases
 {
     public class Validate_global_search_works_as_expected : BaseTest
     {
-        [Test]
-        public void Test1()
+        [TestCase("BLOCKCHAIN")]
+        [TestCase("Cloud")]
+        [TestCase("Automation")]
+        public void TestGlobalSearchFunctionality(string searchFieldValue)
         {
-            //Arrange
-            string programinLanguage;
-
-            //Act
-            programinLanguage = "Java";
-
-            //Assert
             driver.Navigate().GoToUrl("https://www.epam.com/");
             var epamMainPageContext = new EpamMainPageContext(driver);
             epamMainPageContext.VerifyCookiesHandler()
                 .ClickOnIconMagnifier()
-                .SetTextInputSearchField("Automation")
+                .SetTextInputSearchField(searchFieldValue)
                 .ClickButtonFind()
-                .VerifyAllSerchedLinksContainsValue("Automation");
+                .VerifyAllSerchedLinksContainsValue(searchFieldValue);
         }
     }
 }

@@ -11,6 +11,6 @@ namespace Selenium_pract_task.POM.EpamMainPage.EpamSearchPage
         }
 
         public IWebElement LinkCareers => driver.FindElement(By.LinkText("Careers"));
-        public IReadOnlyCollection<IWebElement> FoundLinks => driver.FindElements(By.XPath("//div[contains(@class, 'search-results__items')]/article[contains(@class, 'search-results__item')]//h3/a"));
+        public IReadOnlyCollection<IWebElement> FoundLinks => driver.FindElements(By.XPath("//article//h3/a"));
     }
 }

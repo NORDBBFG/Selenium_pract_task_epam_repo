@@ -16,12 +16,12 @@ namespace Selenium_pract_task.POM.EpamMainPage.EpamSearchPage
 
         public EpamSearchPageContext VerifyAllSerchedLinksContainsValue(string value, bool expectedResult = true)
         {
-            foreach (var link in epamSearchPage.FoundLinks)
-            {
-                string linkText = link.Text;
-                var actualResult = linkText.Contains(value);
-                Assert.That(expectedResult, Is.EqualTo(actualResult), $"Link text: [{linkText}], do not contains expected value: [{value}].");
-            }
+            epamSearchPage.FoundLinks
+        .Select(link => link.Text.ToLower())
+        .ToList()
+        .ForEach(linkText =>
+            Assert.That(expectedResult, Is.EqualTo(linkText.Contains(value.ToLower())),
+                $"Link text: [{linkText}], do not contains expected value: [{value}]."));
 
             return this;
         }
