@@ -9,7 +9,6 @@ namespace Selenium_pract_task.POM.EpamMainPage
     public class EpamMainPageContext : AbstractPageContext
     {
         private EpamMainPage epamMainPage;
-        private readonly WebDriverWait wait;
 
         public EpamMainPageContext(IWebDriver driver)
         {

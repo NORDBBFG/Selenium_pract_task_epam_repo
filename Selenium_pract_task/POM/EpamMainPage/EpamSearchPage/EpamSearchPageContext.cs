@@ -14,7 +14,7 @@ namespace Selenium_pract_task.POM.EpamMainPage.EpamSearchPage
             epamSearchPage = new EpamSearchPage(driver);
         }
 
-        public EpamSearchPageContext VerifyAllSerchedLinksContainsValue(string value, bool expectedResult = true)
+        public EpamSearchPageContext VerifyAllSerchedLinksContainsSerchedText(string value, bool expectedResult = true)
         {
             epamSearchPage.FoundLinks
         .Select(link => link.Text.ToLower())

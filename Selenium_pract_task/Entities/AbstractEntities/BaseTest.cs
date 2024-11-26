@@ -8,10 +8,12 @@ using Selenium_pract_task.FileHelper;
 
 namespace Selenium_pract_task.Entities.AbstractEntities
 {
+    [SetUpFixture]
     public abstract class BaseTest
     {
         protected IWebDriver driver;
         private IConfiguration _browserConfig;
+        private readonly string baseUrl = "https://www.epam.com";
 
         [SetUp]
         public void Setup()
@@ -44,6 +46,7 @@ namespace Selenium_pract_task.Entities.AbstractEntities
 
             driver.Manage().Window.Maximize();
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(5);
+            driver.Navigate().GoToUrl(baseUrl);
         }
 
         [TearDown]

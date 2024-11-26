@@ -8,7 +8,6 @@ namespace Selenium_pract_task.POM.EpamMainPage.EpamCareersPage
     public class EpamCareersPageContext : AbstractPageContext
     {
         private EpamCareersPage epamCereersPage;
-        private WebDriverWait wait;
 
         public EpamCareersPageContext(IWebDriver driver)
         {
@@ -51,6 +50,20 @@ namespace Selenium_pract_task.POM.EpamMainPage.EpamCareersPage
         {
             epamCereersPage.ButtonViewAndApplyLastElement.Click();
             return new EpamJobPageContext(driver);
+        }
+
+        public EpamCareersPageContext ScrollToCheckBoxRemote()
+        {
+            try
+            {
+                IJavaScriptExecutor js = (IJavaScriptExecutor)driver;
+                js.ExecuteScript("arguments[0].scrollIntoView();", epamCereersPage.CheckBoxRemote);
+                return this;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Failed to scroll to the checkbox 'Remote'. \nException: {ex.Message}");
+            }
         }
     }
 }
