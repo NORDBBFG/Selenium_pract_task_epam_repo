@@ -1,16 +1,10 @@
-﻿using OpenQA.Selenium.Support.UI;
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
 using Selenium_pract_task.Entities.AbstractEntities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using NUnit.Framework;
 
 namespace Selenium_pract_task.POM.EpamMainPage.EpamSearchPage
 {
-    internal class EpamSearchPageContext : AbstractPageContext
+    public class EpamSearchPageContext : AbstractPageContext
     {
         private EpamSearchPage epamSearchPage;
 
@@ -20,14 +14,14 @@ namespace Selenium_pract_task.POM.EpamMainPage.EpamSearchPage
             epamSearchPage = new EpamSearchPage(driver);
         }
 
-        public EpamSearchPageContext verifyAllSerchedLinksContainsValue(string value, bool expectedResult = true)
+        public EpamSearchPageContext VerifyAllSerchedLinksContainsSerchedText(string value, bool expectedResult = true)
         {
-            foreach (var link in epamSearchPage.foundLinks)
-            {
-                string linkText = link.Text;
-                var actualResult = linkText.Contains(value);
-                Assert.That(expectedResult, Is.EqualTo(actualResult), $"Link text: [{linkText}], do not contains expected value: [{value}].");
-            }
+            epamSearchPage.FoundLinks
+        .Select(link => link.Text.ToLower())
+        .ToList()
+        .ForEach(linkText =>
+            Assert.That(expectedResult, Is.EqualTo(linkText.Contains(value.ToLower())),
+                $"Link text: [{linkText}], do not contains expected value: [{value}]."));
 
             return this;
         }

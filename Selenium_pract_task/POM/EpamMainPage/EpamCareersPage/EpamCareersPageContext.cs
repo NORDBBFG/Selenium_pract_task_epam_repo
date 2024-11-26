@@ -1,20 +1,13 @@
 ﻿using OpenQA.Selenium.Support.UI;
 using OpenQA.Selenium;
 using Selenium_pract_task.Entities.AbstractEntities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using OpenQA.Selenium.Interactions;
 using Selenium_pract_task.POM.EpamMainPage.EpamJobPage;
 
 namespace Selenium_pract_task.POM.EpamMainPage.EpamCareersPage
 {
-    internal class EpamCareersPageContext : AbstractPageContext
+    public class EpamCareersPageContext : AbstractPageContext
     {
         private EpamCareersPage epamCereersPage;
-        private WebDriverWait wait;
 
         public EpamCareersPageContext(IWebDriver driver)
         {
@@ -23,40 +16,54 @@ namespace Selenium_pract_task.POM.EpamMainPage.EpamCareersPage
             wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
         }
 
-        public EpamCareersPageContext fillInputKeyword(string keyword)
+        public EpamCareersPageContext FillInputKeyword(string keyword)
         {
-            epamCereersPage.inputKeyword.SendKeys(keyword);
+            epamCereersPage.InputKeyword.SendKeys(keyword);
             return this;
         }
 
-        public EpamCareersPageContext clickInputLocation()
+        public EpamCareersPageContext ClickInputLocation()
         {
-            epamCereersPage.inputLocation.Click();
+            epamCereersPage.InputLocation.Click();
             return this;
         }
 
-        public EpamCareersPageContext selectInputLocationAllLocations()
+        public EpamCareersPageContext SelectInputLocationAllLocations()
         {
-            epamCereersPage.inputLocationMenuItemnAllLocations.Click();
+            epamCereersPage.InputLocationMenuItemnAllLocations.Click();
             return this;
         }
 
-        public EpamCareersPageContext checkRemoutCheckBox()
+        public EpamCareersPageContext CheckRemoutCheckBox()
         {
-            epamCereersPage.checkBoxRemote.Click();
+            epamCereersPage.CheckBoxRemote.Click();
             return this;
         }
 
-        public EpamCareersPageContext clickButtonFind()
+        public EpamCareersPageContext ClickButtonFind()
         {
-            epamCereersPage.buttonFind.Click();
+            epamCereersPage.ButtonFind.Click();
             return this;
         }
 
-        public EpamJobPageContext clickButtonViewAndApplyLastElement()
+        public EpamJobPageContext ClickButtonViewAndApplyLastElement()
         {
-            epamCereersPage.buttonViewAndApplyLastElement.Click();
+            epamCereersPage.ButtonViewAndApplyLastElement.Click();
             return new EpamJobPageContext(driver);
+        }
+
+        public EpamCareersPageContext ScrollToCheckBoxRemote()
+        {
+            try
+            {
+                IJavaScriptExecutor js = (IJavaScriptExecutor)driver;
+                js.ExecuteScript("arguments[0].scrollIntoView();", epamCereersPage.CheckBoxRemote);
+                return this;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Failed to scroll to the checkbox 'Remote'. \nException: {ex.Message}");
+            }
         }
     }
 }

@@ -1,20 +1,13 @@
 ﻿using OpenQA.Selenium.Support.UI;
 using OpenQA.Selenium;
 using Selenium_pract_task.Entities.AbstractEntities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Selenium_pract_task.POM.EpamMainPage.EpamCareersPage;
 using NUnit.Framework;
 
 namespace Selenium_pract_task.POM.EpamMainPage.EpamJobPage
 {
-    internal class EpamJobPageContext : AbstractPageContext
+    public class EpamJobPageContext : AbstractPageContext
     {
         private EpamJobPage epamJobPage;
-        private WebDriverWait wait;
 
         public EpamJobPageContext(IWebDriver driver)
         {
@@ -23,10 +16,10 @@ namespace Selenium_pract_task.POM.EpamMainPage.EpamJobPage
             wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
         }
 
-        public EpamJobPageContext verifyJobTitleContainsValue(string value,bool expectedResult = true)
+        public EpamJobPageContext VerifyJobTitleContainsPrograminLanguage(string value,bool expectedResult = true)
         {
-            string titleText = epamJobPage.jobeTitle.Text;
-            var actualResult = titleText.Contains(value);
+            string titleText = epamJobPage.JobeTitle.Text.ToLower();
+            var actualResult = titleText.Contains(value.ToLower());
             Assert.That(expectedResult, Is.EqualTo(actualResult), $"Job title: [{titleText}], do not contains expected value: [{value}].");
 
             return this;

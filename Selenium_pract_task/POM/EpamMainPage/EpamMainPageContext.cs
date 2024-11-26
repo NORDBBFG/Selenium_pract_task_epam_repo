@@ -6,10 +6,9 @@ using Selenium_pract_task.POM.EpamMainPage.EpamSearchPage;
 
 namespace Selenium_pract_task.POM.EpamMainPage
 {
-    internal class EpamMainPageContext : AbstractPageContext
+    public class EpamMainPageContext : AbstractPageContext
     {
         private EpamMainPage epamMainPage;
-        private WebDriverWait wait;
 
         public EpamMainPageContext(IWebDriver driver)
         {
@@ -18,49 +17,70 @@ namespace Selenium_pract_task.POM.EpamMainPage
             wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
         }
 
-        public EpamMainPageContext verifyCookiesHendler()
+        public EpamMainPageContext VerifyCookiesHandler()
         {
-            var element = epamMainPage.buttonAcceptAllCookies;
-            var cond = element.Enabled;
-            if (cond)
+            try
             {
-                element.Click();
+                var element = wait.Until(driver =>
+                {
+                    try
+                    {
+                        var cookieButton = epamMainPage.ButtonAcceptAllCookies;
+
+                        if (cookieButton != null && cookieButton.Displayed && cookieButton.Enabled)
+                        {
+                            cookieButton.Click();
+                            return cookieButton;
+                        }
+                    }
+                    catch (ElementClickInterceptedException)
+                    {
+                        return null;
+                    }
+
+                    return null;
+                });
+
+            }
+            catch (WebDriverTimeoutException)
+            {
                 return this;
             }
+
             return this;
         }
 
-        public EpamCareersPageContext clickOnCareersLink()
+        public EpamCareersPageContext ClickOnCareersLink()
         {
             var clickableElement = wait.Until(driver =>
             {
-                var element = epamMainPage.linkCareers;
+                var element = epamMainPage.LinkCareers;
                 return (element != null && element.Displayed && element.Enabled) ? element : null;
             });
-            epamMainPage.linkCareers.Click();
+            epamMainPage.LinkCareers.Click();
             return new EpamCareersPageContext(driver);
         }
 
-        public EpamMainPageContext clickOnIconMagnifier()
+        public EpamMainPageContext ClickOnIconMagnifier()
         {
             var clickableElement = wait.Until(driver =>
             {
-                var element = epamMainPage.iconMagnifier;
+                var element = epamMainPage.IconMagnifier;
                 return (element != null && element.Displayed && element.Enabled) ? element : null;
             });
-            epamMainPage.iconMagnifier.Click();
+            epamMainPage.IconMagnifier.Click();
             return this;
         }
 
-        public EpamMainPageContext setTextInputSearchField(string value)
+        public EpamMainPageContext SetTextInputSearchField(string value)
         {
-            epamMainPage.inputSearchField.SendKeys(value);
+            epamMainPage.InputSearchField.SendKeys(value);
             return this;
         }
 
-        public EpamSearchPageContext clickButtonFind()
+        public EpamSearchPageContext ClickButtonFind()
         {
-            epamMainPage.buttonFind.Click();
+            epamMainPage.ButtonFind.Click();
             return new EpamSearchPageContext(driver);
         }
     }
