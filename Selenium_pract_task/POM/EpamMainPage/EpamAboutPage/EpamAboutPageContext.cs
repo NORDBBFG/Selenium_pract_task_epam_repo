@@ -1,8 +1,8 @@
 ﻿using OpenQA.Selenium;
 using Selenium_pract_task.Entities.AbstractEntities;
 using static Selenium_pract_task.Constants.Constants.IOConstants;
+using static Selenium_pract_task.FileHelper.FileHelper;
 using NUnit.Framework;
-using OpenQA.Selenium.Interactions;
 
 namespace Selenium_pract_task.POM.EpamMainPage.EpamAboutPage
 {
@@ -15,20 +15,19 @@ namespace Selenium_pract_task.POM.EpamMainPage.EpamAboutPage
         public EpamAboutPageContext(IWebDriver driver)
         {
             this.driver = driver;
-            epamMainPage = new EpamMainPage(driver);
+            epamAboutPage = new EpamAboutPage(driver);
         }
 
         public EpamAboutPageContext ClickButtonDownload()
         {
-            Actions actions = new Actions(driver);
-            actions.MoveToElement(epamAboutPage.ButtonDownload).Click().Perform();
+            epamAboutPage.ButtonDownload.Click();
             return this;
         }
 
-        public EpamAboutPageContext VerifyEPAMCompanyOverviewDownloadedFileExist(string fileName, bool expectedResolt = true)
+        public EpamAboutPageContext VerifyEPAMCompanyOverviewDownloadedFileExist(string fileName, int waitTimeSeconds = 10, bool expectedResolt = true)
         {
             string filePath = Path.Combine(windowsDefaultDownloadDirectoryPath, fileName);
-            var actualResult = File.Exists(filePath);
+            var actualResult = WaitForFileExist(filePath, waitTimeSeconds);
             Assert.That(expectedResolt, Is.EqualTo(actualResult), $"File [{fileName}] using file path: [{filePath}] was not found.");
             return this;
         }

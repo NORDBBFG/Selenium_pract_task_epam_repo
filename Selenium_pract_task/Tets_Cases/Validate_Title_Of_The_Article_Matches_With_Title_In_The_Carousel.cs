@@ -7,7 +7,7 @@ namespace Selenium_pract_task.Tets_Cases
     [TestFixture]
     public class Validate_Title_Of_The_Article_Matches_With_Title_In_The_Carousel : BaseTest
     {
-        string activeSliderText;
+        private string activeSliderText;
 
         [Test]
         public void ValidateArticleMaches()

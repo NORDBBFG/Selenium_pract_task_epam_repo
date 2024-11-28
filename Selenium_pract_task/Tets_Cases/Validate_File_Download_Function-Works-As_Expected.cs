@@ -8,7 +8,7 @@ namespace Selenium_pract_task.Tets_Cases
     [TestFixture]
     public class Validate_File_Download_Function_Works_As_Expected : BaseTest
     {
-        private string downloadedFileName = "EPAM_Corporate_Overview_Q4_EOY";
+        private string downloadedFileName = "EPAM_Corporate_Overview_Q4_EOY.pdf";
 
         [Test]
         public void ValidateFileDownloadFunction()
