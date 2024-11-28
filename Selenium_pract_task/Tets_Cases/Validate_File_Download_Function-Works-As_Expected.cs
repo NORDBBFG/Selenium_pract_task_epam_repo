@@ -1,0 +1,30 @@
+﻿using NUnit.Framework;
+using Selenium_pract_task.Entities.AbstractEntities;
+using Selenium_pract_task.POM.EpamMainPage;
+using static Selenium_pract_task.Constants.Constants.IOConstants;
+
+namespace Selenium_pract_task.Tets_Cases
+{
+    [TestFixture]
+    public class Validate_File_Download_Function_Works_As_Expected : BaseTest
+    {
+        private string downloadedFileName = "EPAM_Corporate_Overview_Q4_EOY";
+
+        [Test]
+        public void ValidateFileDownloadFunction()
+        {
+            var epamMainPageContext = new EpamMainPageContext(driver);
+            epamMainPageContext.VerifyCookiesHandler()
+                .ClickOnAboutLink()
+                .ClickButtonDownload()
+                .VerifyEPAMCompanyOverviewDownloadedFileExist(downloadedFileName);
+        }
+
+        [TearDown]
+        public void TearDown()
+        {
+            string filePath = Path.Combine(windowsDefaultDownloadDirectoryPath, downloadedFileName);
+            File.Delete(filePath);
+        }
+    }
+}
