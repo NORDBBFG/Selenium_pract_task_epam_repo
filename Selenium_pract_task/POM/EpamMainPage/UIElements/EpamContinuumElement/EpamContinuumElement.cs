@@ -1,11 +1,11 @@
 ﻿using OpenQA.Selenium;
 using Selenium_pract_task.Entities.AbstractEntities;
 
-namespace Selenium_pract_task.POM.EpamMainPage.EpamInsightsPage.EpamContinuumPage
+namespace Selenium_pract_task.POM.EpamMainPage.UIElements.EpamContinuumElement
 {
-    public class EpamContinuumPage : AbstractPage
+    public class EpamContinuumElement : AbstractPageContext
     {
-        public EpamContinuumPage(IWebDriver driver) : base(driver)
+        public EpamContinuumElement(IWebDriver driver) : base(driver)
         {
         }
 
