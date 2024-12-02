@@ -15,8 +15,7 @@ namespace Selenium_pract_task.Tets_Cases
             var epamMainPageContext = new EpamMainPageContext(driver);
             epamMainPageContext.VerifyCookiesHandler()
                 .ClickOnLinkInsightsLink()
-                .ClickButtonNextSlideContinuum()
-                .ClickButtonNextSlideContinuum()
+                .ClickButtonNextSlideContinuum(2)
                 .GetTextActiveSliderContinuum(out activeSliderText)
                 .ClickButtonReadMoreContinuum()
                 .VerifyCountinuumPageTitle(activeSliderText);

@@ -5,9 +5,8 @@ namespace Selenium_pract_task.POM.EpamMainPage
 {
     public class EpamMainPage : AbstractPage
     {
-        public EpamMainPage(IWebDriver driver)
+        public EpamMainPage(IWebDriver driver) : base(driver)
         {
-            this.driver = driver;
         }
         
         public IWebElement LinkCareers => driver.FindElement(By.LinkText("Careers"));

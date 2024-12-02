@@ -5,9 +5,8 @@ namespace Selenium_pract_task.POM.EpamMainPage.EpamAboutPage
 {
     public class EpamAboutPage : AbstractPage
     {
-        public EpamAboutPage(IWebDriver driver)
+        public EpamAboutPage(IWebDriver driver) : base (driver)
         {
-            this.driver = driver;
         }
 
         public IWebElement ButtonDownload => driver.FindElement(By.XPath("//a[@download]"));

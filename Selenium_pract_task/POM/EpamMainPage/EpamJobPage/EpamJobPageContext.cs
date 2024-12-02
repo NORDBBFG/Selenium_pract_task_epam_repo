@@ -9,9 +9,8 @@ namespace Selenium_pract_task.POM.EpamMainPage.EpamJobPage
     {
         private EpamJobPage epamJobPage;
 
-        public EpamJobPageContext(IWebDriver driver)
+        public EpamJobPageContext(IWebDriver driver) : base(driver)
         {
-            this.driver = driver;
             epamJobPage = new EpamJobPage(driver);
             wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
         }

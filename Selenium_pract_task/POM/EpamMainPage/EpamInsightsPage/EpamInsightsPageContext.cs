@@ -8,15 +8,18 @@ namespace Selenium_pract_task.POM.EpamMainPage.EpamInsightsPage
     {
         private EpamInsightsPage epamInsightsPage;
 
-        public EpamInsightsPageContext(IWebDriver driver)
+        public EpamInsightsPageContext(IWebDriver driver) : base(driver)
         {
-            this.driver = driver;
             epamInsightsPage = new EpamInsightsPage(driver);
         }
 
-        public EpamInsightsPageContext ClickButtonNextSlideContinuum()
+        public EpamInsightsPageContext ClickButtonNextSlideContinuum(int clicks = 1)
         {
-            epamInsightsPage.ButtonNextContinuumSlider.Click();
+            for (int i = 0; i < clicks; i++)
+            {
+                epamInsightsPage.ButtonNextContinuumSlider.Click();
+            }
+
             return this;
         }
 

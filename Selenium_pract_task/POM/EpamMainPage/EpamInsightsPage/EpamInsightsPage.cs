@@ -5,9 +5,8 @@ namespace Selenium_pract_task.POM.EpamMainPage.EpamInsightsPage
 {
     public class EpamInsightsPage : AbstractPage
     {
-        public EpamInsightsPage(IWebDriver driver)
+        public EpamInsightsPage(IWebDriver driver) : base(driver)
         {
-            this.driver = driver;
         }
 
         public IWebElement ButtonNextContinuumSlider => driver.FindElement(By.XPath("(//button[@role='presentation' and @class='slider__right-arrow slider-navigation-arrow'])[1]"));

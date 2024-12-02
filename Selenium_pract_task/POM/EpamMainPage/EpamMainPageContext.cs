@@ -12,9 +12,8 @@ namespace Selenium_pract_task.POM.EpamMainPage
     {
         private EpamMainPage epamMainPage;
 
-        public EpamMainPageContext(IWebDriver driver)
+        public EpamMainPageContext(IWebDriver driver) : base(driver)
         {
-            this.driver = driver;
             epamMainPage = new EpamMainPage(driver);
             wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
         }

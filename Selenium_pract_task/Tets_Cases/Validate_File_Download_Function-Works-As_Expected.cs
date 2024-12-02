@@ -8,10 +8,9 @@ namespace Selenium_pract_task.Tets_Cases
     [TestFixture]
     public class Validate_File_Download_Function_Works_As_Expected : BaseTest
     {
-        private string downloadedFileName = "EPAM_Corporate_Overview_Q4_EOY.pdf";
 
-        [Test]
-        public void ValidateFileDownloadFunction()
+        [TestCase(EPAMCorporateOverviewFileNeame)]
+        public void ValidateFileDownloadFunction(string downloadedFileName)
         {
             var epamMainPageContext = new EpamMainPageContext(driver);
             epamMainPageContext.VerifyCookiesHandler()
@@ -23,7 +22,7 @@ namespace Selenium_pract_task.Tets_Cases
         [TearDown]
         public void TearDown()
         {
-            string filePath = Path.Combine(windowsDefaultDownloadDirectoryPath, downloadedFileName);
+            string filePath = Path.Combine(windowsDefaultDownloadDirectoryPath, EPAMCorporateOverviewFileNeame);
             File.Delete(filePath);
         }
     }

@@ -8,9 +8,8 @@ namespace Selenium_pract_task.POM.EpamMainPage.EpamInsightsPage.EpamContinuumPag
     {
         private EpamContinuumPage epamContinuumPage;
 
-        public EpamContinuumPageContext(IWebDriver driver)
+        public EpamContinuumPageContext(IWebDriver driver) : base(driver)
         {
-            this.driver = driver;
             epamContinuumPage = new EpamContinuumPage(driver);
         }
 

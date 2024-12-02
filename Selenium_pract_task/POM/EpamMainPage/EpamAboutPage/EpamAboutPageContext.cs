@@ -8,13 +8,10 @@ namespace Selenium_pract_task.POM.EpamMainPage.EpamAboutPage
 {
     public class EpamAboutPageContext : AbstractPageContext
     {
-        EpamAboutPage epamAboutPage;
+        private EpamAboutPage epamAboutPage;
 
-        private EpamMainPage epamMainPage;
-
-        public EpamAboutPageContext(IWebDriver driver)
+        public EpamAboutPageContext(IWebDriver driver) : base(driver)
         {
-            this.driver = driver;
             epamAboutPage = new EpamAboutPage(driver);
         }
 

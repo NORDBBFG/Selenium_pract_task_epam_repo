@@ -5,9 +5,8 @@ namespace Selenium_pract_task.POM.EpamMainPage.EpamInsightsPage.EpamContinuumPag
 {
     public class EpamContinuumPage : AbstractPage
     {
-        public EpamContinuumPage(IWebDriver driver)
+        public EpamContinuumPage(IWebDriver driver) : base(driver)
         {
-            this.driver = driver;
         }
 
         public IWebElement ContinuumTitle => driver.FindElement(By.XPath("//span[@class='font-size-80-33']//span"));

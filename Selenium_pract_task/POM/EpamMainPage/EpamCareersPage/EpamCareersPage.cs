@@ -5,9 +5,8 @@ namespace Selenium_pract_task.POM.EpamMainPage.EpamCareersPage
 {
     public class EpamCareersPage : AbstractPage
     {
-        public EpamCareersPage(IWebDriver driver)
+        public EpamCareersPage(IWebDriver driver) : base(driver)
         {
-            this.driver = driver;
         }
 
         public IWebElement InputKeyword => driver.FindElement(By.CssSelector("#new_form_job_search-keyword"));
