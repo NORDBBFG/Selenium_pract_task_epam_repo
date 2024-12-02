@@ -8,9 +8,8 @@ namespace Selenium_pract_task.POM.EpamMainPage.EpamSearchPage
     {
         private EpamSearchPage epamSearchPage;
 
-        public EpamSearchPageContext(IWebDriver driver)
+        public EpamSearchPageContext(IWebDriver driver) : base(driver)
         {
-            this.driver = driver;
             epamSearchPage = new EpamSearchPage(driver);
         }
 
