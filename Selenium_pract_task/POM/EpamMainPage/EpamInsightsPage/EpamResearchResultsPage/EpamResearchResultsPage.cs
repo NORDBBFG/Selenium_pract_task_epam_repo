@@ -1,14 +1,16 @@
 ﻿using OpenQA.Selenium;
 using Selenium_pract_task.Entities.AbstractEntities;
 
-namespace Selenium_pract_task.POM.EpamMainPage.UIElements.EpamContinuumElement
+namespace Selenium_pract_task.POM.EpamMainPage.EpamInsightsPage.EpamResearchResultsPage
 {
-    public class EpamContinuumElement : AbstractPageContext
+    public class EpamResearchResultsPage : AbstractPage
     {
-        public EpamContinuumElement(IWebDriver driver) : base(driver)
+        public EpamResearchResultsPage(IWebDriver driver) : base(driver)
         {
+
         }
 
         public IWebElement ContinuumTitle => driver.FindElement(By.XPath("//span[@class='font-size-80-33']//span"));
+
     }
 }
