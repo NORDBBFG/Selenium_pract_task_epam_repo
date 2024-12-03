@@ -1,7 +1,9 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using Selenium_pract_task.Entities.AbstractEntities;
+using Selenium_pract_task.POM.EpamMainPage.EpamAboutPage;
 using Selenium_pract_task.POM.EpamMainPage.EpamCareersPage;
+using Selenium_pract_task.POM.EpamMainPage.EpamInsightsPage;
 using Selenium_pract_task.POM.EpamMainPage.EpamSearchPage;
 
 namespace Selenium_pract_task.POM.EpamMainPage
@@ -10,9 +12,8 @@ namespace Selenium_pract_task.POM.EpamMainPage
     {
         private EpamMainPage epamMainPage;
 
-        public EpamMainPageContext(IWebDriver driver)
+        public EpamMainPageContext(IWebDriver driver) : base(driver)
         {
-            this.driver = driver;
             epamMainPage = new EpamMainPage(driver);
             wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
         }
@@ -59,6 +60,18 @@ namespace Selenium_pract_task.POM.EpamMainPage
             });
             epamMainPage.LinkCareers.Click();
             return new EpamCareersPageContext(driver);
+        }
+
+        public EpamAboutPageContext ClickOnAboutLink()
+        {
+            epamMainPage.LinkAbout.Click();
+            return new EpamAboutPageContext(driver);
+        }
+
+        public EpamInsightsPageContext ClickOnLinkInsightsLink()
+        {
+            epamMainPage.LinkInsights.Click();
+            return new EpamInsightsPageContext(driver);
         }
 
         public EpamMainPageContext ClickOnIconMagnifier()

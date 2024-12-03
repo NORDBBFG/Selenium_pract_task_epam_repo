@@ -5,9 +5,8 @@ namespace Selenium_pract_task.POM.EpamMainPage.EpamJobPage
 {
     public class EpamJobPage : AbstractPage
     {
-        public EpamJobPage(IWebDriver driver)
+        public EpamJobPage(IWebDriver driver) : base(driver)
         {
-            this.driver = driver;
         }
 
         public IWebElement JobeTitle => driver.FindElement(By.XPath("//h1[@class='vacancy-details-23__job-title']"));
