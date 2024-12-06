@@ -13,7 +13,7 @@ namespace Selenium_pract_task.Tets_Cases
         public void ValidateFileDownloadFunction(string downloadedFileName)
         {
             var epamMainPageContext = new EpamMainPageContext(driver);
-            epamMainPageContext.VerifyCookiesHandler()
+            epamMainPageContext.VerifyCookiesHandler<EpamMainPageContext>()
                 .ClickOnAboutLink()
                 .ClickButtonDownload()
                 .VerifyEPAMCompanyOverviewDownloadedFileExist(downloadedFileName);

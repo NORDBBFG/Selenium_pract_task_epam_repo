@@ -1,20 +1,20 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium;
 using Selenium_pract_task.Entities.AbstractEntities;
-using Selenium_pract_task.POM.EpamMainPage.EpamInsightsPage.EpamResearchResultsPage;
-using Selenium_pract_task.POM.EpamMainPage.UIElements.EpamContinuumElement;
+using Selenium_pract_task.POM.EpamInsightsPage.EpamResearchResultsPage;
+using Selenium_pract_task.POM.UIElements.EpamContinuumElement;
 
-namespace Selenium_pract_task.POM.EpamMainPage.EpamInsightsPage
+namespace Selenium_pract_task.POM.EpamInsightsPage
 {
     public class EpamInsightsPageContext : AbstractPageContext
     {
         private EpamInsightsPage epamInsightsPage;
-        private EpamContinuumSliderElement epamContinuumElement;
+        private EpamContinuumSliderComponent epamContinuumElement;
 
         public EpamInsightsPageContext(IWebDriver driver) : base(driver)
         {
             epamInsightsPage = new EpamInsightsPage(driver);
-            epamContinuumElement = new EpamContinuumSliderElement(driver);
+            epamContinuumElement = new EpamContinuumSliderComponent(driver);
         }
 
         public EpamInsightsPageContext ClickButtonNextSlideContinuum(int clicks = 1)

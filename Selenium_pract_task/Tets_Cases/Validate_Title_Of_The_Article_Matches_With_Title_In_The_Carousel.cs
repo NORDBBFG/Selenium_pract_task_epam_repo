@@ -13,7 +13,7 @@ namespace Selenium_pract_task.Tets_Cases
         public void ValidateArticleMaches()
         {
             var epamMainPageContext = new EpamMainPageContext(driver);
-            epamMainPageContext.VerifyCookiesHandler()
+            epamMainPageContext.VerifyCookiesHandler<EpamMainPageContext>()
                 .ClickOnLinkInsightsLink()
                 .ClickButtonNextSlideContinuum(2)
                 .GetTextActiveSliderContinuum(out activeSliderText)

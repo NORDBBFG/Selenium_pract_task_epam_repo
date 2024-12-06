@@ -4,7 +4,7 @@ using static Selenium_pract_task.Constants.Constants.IOConstants;
 using static Selenium_pract_task.FileHelper.FileHelper;
 using NUnit.Framework;
 
-namespace Selenium_pract_task.POM.EpamMainPage.EpamAboutPage
+namespace Selenium_pract_task.POM.EpamAboutPage
 {
     public class EpamAboutPageContext : AbstractPageContext
     {
