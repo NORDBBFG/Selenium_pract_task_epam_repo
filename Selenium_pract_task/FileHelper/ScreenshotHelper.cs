@@ -20,6 +20,7 @@ namespace Selenium_pract_task.FileHelper
                     Directory.CreateDirectory(screenshotFolderPath);
 
                     var filePath = Path.Combine(screenshotFolderPath, $"{sanitizedTestName}_{DateTime.Now:yyyyMMdd_HHmmss}.png");
+                    screenshot.SaveAsFile(filePath);
 
                     logger.Information($"Screenshot saved to {filePath}");
                 }
