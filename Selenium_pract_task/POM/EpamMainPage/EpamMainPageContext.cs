@@ -1,10 +1,10 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using Selenium_pract_task.Entities.AbstractEntities;
-using Selenium_pract_task.POM.EpamMainPage.EpamAboutPage;
-using Selenium_pract_task.POM.EpamMainPage.EpamCareersPage;
-using Selenium_pract_task.POM.EpamMainPage.EpamInsightsPage;
-using Selenium_pract_task.POM.EpamMainPage.EpamSearchPage;
+using Selenium_pract_task.POM.EpamAboutPage;
+using Selenium_pract_task.POM.EpamCareersPage;
+using Selenium_pract_task.POM.EpamInsightsPage;
+using Selenium_pract_task.POM.EpamSearchPage;
 
 namespace Selenium_pract_task.POM.EpamMainPage
 {
@@ -16,39 +16,6 @@ namespace Selenium_pract_task.POM.EpamMainPage
         {
             epamMainPage = new EpamMainPage(driver);
             wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
-        }
-
-        public EpamMainPageContext VerifyCookiesHandler()
-        {
-            try
-            {
-                var element = wait.Until(driver =>
-                {
-                    try
-                    {
-                        var cookieButton = epamMainPage.ButtonAcceptAllCookies;
-
-                        if (cookieButton != null && cookieButton.Displayed && cookieButton.Enabled)
-                        {
-                            cookieButton.Click();
-                            return cookieButton;
-                        }
-                    }
-                    catch (ElementClickInterceptedException)
-                    {
-                        return null;
-                    }
-
-                    return null;
-                });
-
-            }
-            catch (WebDriverTimeoutException)
-            {
-                return this;
-            }
-
-            return this;
         }
 
         public EpamCareersPageContext ClickOnCareersLink()

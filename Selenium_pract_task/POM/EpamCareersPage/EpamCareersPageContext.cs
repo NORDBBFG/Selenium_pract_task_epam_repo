@@ -1,9 +1,9 @@
 ﻿using OpenQA.Selenium.Support.UI;
 using OpenQA.Selenium;
 using Selenium_pract_task.Entities.AbstractEntities;
-using Selenium_pract_task.POM.EpamMainPage.EpamJobPage;
+using Selenium_pract_task.POM.EpamJobPage;
 
-namespace Selenium_pract_task.POM.EpamMainPage.EpamCareersPage
+namespace Selenium_pract_task.POM.EpamCareersPage
 {
     public class EpamCareersPageContext : AbstractPageContext
     {

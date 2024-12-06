@@ -3,7 +3,7 @@ using OpenQA.Selenium;
 using Selenium_pract_task.Entities.AbstractEntities;
 using NUnit.Framework;
 
-namespace Selenium_pract_task.POM.EpamMainPage.EpamJobPage
+namespace Selenium_pract_task.POM.EpamJobPage
 {
     public class EpamJobPageContext : AbstractPageContext
     {
@@ -15,7 +15,7 @@ namespace Selenium_pract_task.POM.EpamMainPage.EpamJobPage
             wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
         }
 
-        public EpamJobPageContext VerifyJobTitleContainsPrograminLanguage(string value,bool expectedResult = true)
+        public EpamJobPageContext VerifyJobTitleContainsPrograminLanguage(string value, bool expectedResult = true)
         {
             string titleText = epamJobPage.JobeTitle.Text.ToLower();
             var actualResult = titleText.Contains(value.ToLower());

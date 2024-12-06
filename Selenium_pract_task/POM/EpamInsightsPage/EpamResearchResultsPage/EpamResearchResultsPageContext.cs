@@ -2,7 +2,7 @@
 using OpenQA.Selenium;
 using Selenium_pract_task.Entities.AbstractEntities;
 
-namespace Selenium_pract_task.POM.EpamMainPage.EpamInsightsPage.EpamResearchResultsPage
+namespace Selenium_pract_task.POM.EpamInsightsPage.EpamResearchResultsPage
 {
     public class EpamResearchResultsPageContext : AbstractPageContext
     {

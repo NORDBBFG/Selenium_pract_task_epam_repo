@@ -1,11 +1,11 @@
 ﻿using OpenQA.Selenium;
 using Selenium_pract_task.Entities.AbstractEntities;
 
-namespace Selenium_pract_task.POM.EpamMainPage.UIElements.EpamContinuumElement
+namespace Selenium_pract_task.POM.UIElements.EpamContinuumElement
 {
-    public class EpamContinuumSliderElement : AbstractPageContext
+    public class EpamContinuumSliderComponent : AbstractPageContext
     {
-        public EpamContinuumSliderElement(IWebDriver driver) : base(driver)
+        public EpamContinuumSliderComponent(IWebDriver driver) : base(driver)
         {
         }
 
