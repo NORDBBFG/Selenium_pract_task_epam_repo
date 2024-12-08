@@ -13,7 +13,7 @@ namespace Selenium_pract_task.Tets_Cases
         public void TestGlobalSearchFunctionality(string searchFieldValue)
         {
             var epamMainPageContext = new EpamMainPageContext(driver);
-            epamMainPageContext.VerifyCookiesHandler()
+            epamMainPageContext.VerifyCookiesHandler<EpamMainPageContext>()
                 .ClickOnIconMagnifier()
                 .SetTextInputSearchField(searchFieldValue)
                 .ClickButtonFind()
