@@ -32,12 +32,14 @@ namespace Selenium_pract_task.POM.EpamMainPage
         public EpamAboutPageContext ClickOnAboutLink()
         {
             epamMainPage.LinkAbout.Click();
+            logger.Information("About link where clicked");
             return new EpamAboutPageContext(driver);
         }
 
         public EpamInsightsPageContext ClickOnLinkInsightsLink()
         {
             epamMainPage.LinkInsights.Click();
+            logger.Information("Insights link where clicked.");
             return new EpamInsightsPageContext(driver);
         }
 
@@ -49,18 +51,21 @@ namespace Selenium_pract_task.POM.EpamMainPage
                 return (element != null && element.Displayed && element.Enabled) ? element : null;
             });
             epamMainPage.IconMagnifier.Click();
+            logger.Information("Icon Magnifier where clicked.");
             return this;
         }
 
         public EpamMainPageContext SetTextInputSearchField(string value)
         {
             epamMainPage.InputSearchField.SendKeys(value);
+            logger.Information($"Text [{value}] where send to InputSearchField.");
             return this;
         }
 
         public EpamSearchPageContext ClickButtonFind()
         {
             epamMainPage.ButtonFind.Click();
+            logger.Information("Button Find where clicked.");
             return new EpamSearchPageContext(driver);
         }
     }

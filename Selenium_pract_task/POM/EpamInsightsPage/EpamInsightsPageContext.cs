@@ -23,13 +23,14 @@ namespace Selenium_pract_task.POM.EpamInsightsPage
             {
                 epamInsightsPage.epamContinuumSliderElement.ButtonNextContinuumSlider.Click();
             }
-
+            logger.Information($"Button Next Slide where clicked [{clicks}] tims.");
             return this;
         }
 
         public EpamResearchResultsPageContext ClickButtonReadMoreContinuum()
         {
             epamInsightsPage.epamContinuumSliderElement.ButtonReadMoreContinuumSlider.Click();
+            logger.Information("Button Read More Continuum where clicked.");
             return new EpamResearchResultsPageContext(driver);
         }
 
@@ -37,6 +38,7 @@ namespace Selenium_pract_task.POM.EpamInsightsPage
         {
             Thread.Sleep(1000);
             activeSliderPreview = epamInsightsPage.epamContinuumSliderElement.ActiveTextContinuumSlider.Text;
+            logger.Information($"Text [{activeSliderPreview}] from active continuum slider where taken.");
             return this;
         }
     }

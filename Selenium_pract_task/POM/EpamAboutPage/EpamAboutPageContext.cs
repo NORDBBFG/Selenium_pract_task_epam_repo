@@ -18,6 +18,7 @@ namespace Selenium_pract_task.POM.EpamAboutPage
         public EpamAboutPageContext ClickButtonDownload()
         {
             epamAboutPage.ButtonDownload.Click();
+            logger.Information("Button Download where clicked.");
             return this;
         }
 

@@ -1,7 +1,8 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
-using Selenium_pract_task.POM.EpamMainPage;
 using Selenium_pract_task.POM.UIElements.EpamContinuumComponent;
+using static Selenium_pract_task.Logger.Logger;
+using Serilog;
 
 namespace Selenium_pract_task.Entities.AbstractEntities
 {
@@ -9,10 +10,13 @@ namespace Selenium_pract_task.Entities.AbstractEntities
     {
         protected WebDriverWait wait;
         private EpamCookiesConsentComponent epamCookiesConsentComponent;
+        protected ILogger logger;
+
 
         protected AbstractPageContext(IWebDriver driver) : base(driver)
         {
             epamCookiesConsentComponent = new EpamCookiesConsentComponent(driver);
+            logger = GetLogger();
         }
 
         public T VerifyCookiesHandler<T>() where T : class
@@ -42,9 +46,11 @@ namespace Selenium_pract_task.Entities.AbstractEntities
             }
             catch (WebDriverTimeoutException)
             {
+                logger.Information("Cookies Consent Component not appeared.");
                 return Activator.CreateInstance(typeof(T), driver) as T;
             }
 
+            logger.Information("Cookies Consent Component Verifide.");
             return Activator.CreateInstance(typeof(T), driver) as T;
         }
     }
