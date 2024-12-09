@@ -1,7 +1,7 @@
 ﻿using OpenQA.Selenium;
 using Selenium_pract_task.Entities.AbstractEntities;
 
-namespace Selenium_pract_task.POM.EpamMainPage.EpamSearchPage
+namespace Selenium_pract_task.POM.EpamSearchPage
 {
     public class EpamSearchPage : AbstractPage
     {

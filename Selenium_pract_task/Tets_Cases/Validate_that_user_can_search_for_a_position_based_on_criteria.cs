@@ -1,7 +1,6 @@
 ﻿using NUnit.Framework;
 using Selenium_pract_task.Entities.AbstractEntities;
 using Selenium_pract_task.POM.EpamMainPage;
-using Selenium_pract_task.POM.EpamMainPage.EpamCareersPage;
 
 namespace Selenium_pract_task.Tets_Cases
 {
@@ -16,7 +15,7 @@ namespace Selenium_pract_task.Tets_Cases
 
 
             var epamMainPageContext = new EpamMainPageContext(driver);
-            epamMainPageContext.VerifyCookiesHandler()
+            epamMainPageContext.VerifyCookiesHandler<EpamMainPageContext>()
                 .ClickOnCareersLink()
                 .ScrollToCheckBoxRemote()
                 .CheckRemoutCheckBox()

@@ -2,7 +2,7 @@
 using Selenium_pract_task.Entities.AbstractEntities;
 using NUnit.Framework;
 
-namespace Selenium_pract_task.POM.EpamMainPage.EpamSearchPage
+namespace Selenium_pract_task.POM.EpamSearchPage
 {
     public class EpamSearchPageContext : AbstractPageContext
     {

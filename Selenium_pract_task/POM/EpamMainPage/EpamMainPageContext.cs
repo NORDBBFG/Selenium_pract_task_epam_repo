@@ -1,10 +1,10 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using Selenium_pract_task.Entities.AbstractEntities;
-using Selenium_pract_task.POM.EpamMainPage.EpamAboutPage;
-using Selenium_pract_task.POM.EpamMainPage.EpamCareersPage;
-using Selenium_pract_task.POM.EpamMainPage.EpamInsightsPage;
-using Selenium_pract_task.POM.EpamMainPage.EpamSearchPage;
+using Selenium_pract_task.POM.EpamAboutPage;
+using Selenium_pract_task.POM.EpamCareersPage;
+using Selenium_pract_task.POM.EpamInsightsPage;
+using Selenium_pract_task.POM.EpamSearchPage;
 
 namespace Selenium_pract_task.POM.EpamMainPage
 {
@@ -16,39 +16,6 @@ namespace Selenium_pract_task.POM.EpamMainPage
         {
             epamMainPage = new EpamMainPage(driver);
             wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
-        }
-
-        public EpamMainPageContext VerifyCookiesHandler()
-        {
-            try
-            {
-                var element = wait.Until(driver =>
-                {
-                    try
-                    {
-                        var cookieButton = epamMainPage.ButtonAcceptAllCookies;
-
-                        if (cookieButton != null && cookieButton.Displayed && cookieButton.Enabled)
-                        {
-                            cookieButton.Click();
-                            return cookieButton;
-                        }
-                    }
-                    catch (ElementClickInterceptedException)
-                    {
-                        return null;
-                    }
-
-                    return null;
-                });
-
-            }
-            catch (WebDriverTimeoutException)
-            {
-                return this;
-            }
-
-            return this;
         }
 
         public EpamCareersPageContext ClickOnCareersLink()
@@ -65,12 +32,14 @@ namespace Selenium_pract_task.POM.EpamMainPage
         public EpamAboutPageContext ClickOnAboutLink()
         {
             epamMainPage.LinkAbout.Click();
+            logger.Information("About link where clicked");
             return new EpamAboutPageContext(driver);
         }
 
         public EpamInsightsPageContext ClickOnLinkInsightsLink()
         {
             epamMainPage.LinkInsights.Click();
+            logger.Information("Insights link where clicked.");
             return new EpamInsightsPageContext(driver);
         }
 
@@ -82,18 +51,21 @@ namespace Selenium_pract_task.POM.EpamMainPage
                 return (element != null && element.Displayed && element.Enabled) ? element : null;
             });
             epamMainPage.IconMagnifier.Click();
+            logger.Information("Icon Magnifier where clicked.");
             return this;
         }
 
         public EpamMainPageContext SetTextInputSearchField(string value)
         {
             epamMainPage.InputSearchField.SendKeys(value);
+            logger.Information($"Text [{value}] where send to InputSearchField.");
             return this;
         }
 
         public EpamSearchPageContext ClickButtonFind()
         {
             epamMainPage.ButtonFind.Click();
+            logger.Information("Button Find where clicked.");
             return new EpamSearchPageContext(driver);
         }
     }
