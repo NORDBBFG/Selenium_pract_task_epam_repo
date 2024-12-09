@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Selenium_pract_task.POM.UIElements.EpamContinuumComponent
 {
-    public class EpamCookiesConsentComponent : AbstractPageContext
+    public class EpamCookiesConsentComponent : AbstractPage
     {
         public EpamCookiesConsentComponent(IWebDriver driver) : base(driver)
         {
