@@ -1,9 +1,4 @@
 ﻿using OpenQA.Selenium;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Selenium_pract_task.Entities
 {
@@ -16,14 +11,13 @@ namespace Selenium_pract_task.Entities
 
         public static DriverManager Instance => instance.Value;
 
-        public IWebDriver GetDriver(string browser, bool isHeadless, string baseUrl)
+        public IWebDriver GetDriver(string browser, bool isHeadless)
         {
             if (driver == null)
             {
                 driver = BrowserFactory.CreateDriver(browser, isHeadless);
                 driver.Manage().Window.Maximize();
                 driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(5);
-                driver.Navigate().GoToUrl(baseUrl);
             }
 
             return driver;

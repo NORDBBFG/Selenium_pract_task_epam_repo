@@ -6,19 +6,19 @@ using static Selenium_pract_task.Constants.Constants.IOConstants;
 using static Selenium_pract_task.FileHelper.ScreenshotHelper;
 using NUnit.Framework.Interfaces;
 using static Selenium_pract_task.Logger.Logger;
+using TechTalk.SpecFlow;
 
 namespace Selenium_pract_task.Entities.AbstractEntities
 {
-    [SetUpFixture]
+    [Binding]
     public abstract class BaseTest
     {
-        protected IWebDriver driver;
-        private IConfiguration _browserConfig;
-        private readonly string baseUrl = "https://www.epam.com";
-        private string headlesRunStatus = "true";
+        protected static IWebDriver driver;
+        private static IConfiguration _browserConfig;
+        private static string headlesRunStatus = "true";
 
-        [OneTimeSetUp]
-        public void GlobalSetup()
+        [BeforeTestRun]
+        public static void GlobalSetup()
         {
             InitializeLogger();
             var logger = GetLogger();
@@ -27,8 +27,8 @@ namespace Selenium_pract_task.Entities.AbstractEntities
             logger.Information("Reading browser configuration...");
         }
 
-        [SetUp]
-        public void Setup()
+        [BeforeFeature]
+        public static void Setup()
         {
             var logger = GetLogger();
 
@@ -44,7 +44,7 @@ namespace Selenium_pract_task.Entities.AbstractEntities
                     .Build();
                 string browser = _browserConfig["Browser"];
                 bool isHeadless = Environment.GetEnvironmentVariable("HEADLESS")?.ToLower() == "true";
-                driver = DriverManager.Instance.GetDriver(browser, isHeadless, baseUrl);
+                driver = DriverManager.Instance.GetDriver(browser, isHeadless);
 
                 logger.Information($"Browser initialized: {browser}, Headless mode: {isHeadless}");
             }
@@ -55,8 +55,8 @@ namespace Selenium_pract_task.Entities.AbstractEntities
             }
         }
 
-        [TearDown]
-        public void TearDown()
+        [AfterFeature]
+        public static void TearDown()
         {
             var logger = GetLogger();
 
@@ -87,8 +87,8 @@ namespace Selenium_pract_task.Entities.AbstractEntities
             }
         }
 
-        [OneTimeTearDown]
-        public void GlobalTearDown()
+            [AfterTestRun]
+        public static void GlobalTearDown()
         {
             var logger = GetLogger();
             logger.Information("Global teardown completed.");

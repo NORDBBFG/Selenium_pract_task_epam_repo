@@ -1,7 +1,7 @@
 ﻿using OpenQA.Selenium;
 using Selenium_pract_task.Entities.AbstractEntities;
 
-namespace Selenium_pract_task.POM.UIElements.EpamContinuumElement
+namespace Selenium_pract_task.POM.UIElements.EpamContinuumSliderComponent
 {
     public class EpamContinuumSliderComponent : AbstractPageContext
     {

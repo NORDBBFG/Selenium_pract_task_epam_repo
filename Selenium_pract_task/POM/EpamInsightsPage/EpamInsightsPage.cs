@@ -1,6 +1,6 @@
 ﻿using OpenQA.Selenium;
 using Selenium_pract_task.Entities.AbstractEntities;
-using Selenium_pract_task.POM.UIElements.EpamContinuumElement;
+using Selenium_pract_task.POM.UIElements.EpamContinuumSliderComponent;
 
 namespace Selenium_pract_task.POM.EpamInsightsPage
 {

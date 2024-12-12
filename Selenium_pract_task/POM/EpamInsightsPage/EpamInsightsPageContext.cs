@@ -2,7 +2,7 @@
 using OpenQA.Selenium;
 using Selenium_pract_task.Entities.AbstractEntities;
 using Selenium_pract_task.POM.EpamInsightsPage.EpamResearchResultsPage;
-using Selenium_pract_task.POM.UIElements.EpamContinuumElement;
+using Selenium_pract_task.POM.UIElements.EpamContinuumSliderComponent;
 
 namespace Selenium_pract_task.POM.EpamInsightsPage
 {
@@ -34,12 +34,12 @@ namespace Selenium_pract_task.POM.EpamInsightsPage
             return new EpamResearchResultsPageContext(driver);
         }
 
-        public EpamInsightsPageContext GetTextActiveSliderContinuum(out string activeSliderPreview)
+        public string GetTextActiveSliderContinuum()
         {
             Thread.Sleep(1000);
-            activeSliderPreview = epamInsightsPage.epamContinuumSliderElement.ActiveTextContinuumSlider.Text;
+            var activeSliderPreview = epamInsightsPage.epamContinuumSliderElement.ActiveTextContinuumSlider.Text;
             logger.Information($"Text [{activeSliderPreview}] from active continuum slider where taken.");
-            return this;
+            return activeSliderPreview;
         }
     }
 }
