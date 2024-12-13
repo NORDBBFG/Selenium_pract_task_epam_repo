@@ -1,6 +1,5 @@
 ﻿using OpenQA.Selenium;
 using Selenium_pract_task.Entities.AbstractEntities;
-using NUnit.Framework;
 
 namespace Selenium_pract_task.POM.EpamSearchPage
 {
@@ -13,16 +12,13 @@ namespace Selenium_pract_task.POM.EpamSearchPage
             epamSearchPage = new EpamSearchPage(driver);
         }
 
-        public EpamSearchPageContext VerifyAllSerchedLinksContainsSerchedText(string value, bool expectedResult = true)
+        public List<string> GetAllSerchedLinksText()
         {
-            epamSearchPage.FoundLinks
+           var list = epamSearchPage.FoundLinks
         .Select(link => link.Text.ToLower())
-        .ToList()
-        .ForEach(linkText =>
-            Assert.That(expectedResult, Is.EqualTo(linkText.Contains(value.ToLower())),
-                $"Link text: [{linkText}], do not contains expected value: [{value}]."));
+        .ToList();
 
-            return this;
+            return list;
         }
     }
 }

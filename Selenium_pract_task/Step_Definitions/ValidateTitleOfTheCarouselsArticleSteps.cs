@@ -1,4 +1,5 @@
-﻿using Selenium_pract_task.Entities.AbstractEntities;
+﻿using NUnit.Framework;
+using Selenium_pract_task.Entities.AbstractEntities;
 using Selenium_pract_task.POM.EpamInsightsPage;
 using Selenium_pract_task.POM.EpamInsightsPage.EpamResearchResultsPage;
 using Selenium_pract_task.POM.EpamMainPage;
@@ -43,7 +44,8 @@ namespace Selenium_pract_task.Step_Definitions
         {
             var epamResearchResultsPageContext = new EpamResearchResultsPageContext(driver);
             string activeSliderText = (string)ScenarioContext.Current["ActiveSliderText"];
-            epamResearchResultsPageContext.VerifyCountinuumPageTitle(activeSliderText);
+            var actualResult = epamResearchResultsPageContext.VerifyCountinuumPageTitleExist(activeSliderText, out string actualPageTitle);
+            Assert.That(true, Is.EqualTo(actualResult), $"Job title: [{actualPageTitle}] is not equals to expected value: [{activeSliderText}].");
         }
     }
 }

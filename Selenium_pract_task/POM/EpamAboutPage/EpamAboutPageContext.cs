@@ -21,13 +21,5 @@ namespace Selenium_pract_task.POM.EpamAboutPage
             logger.Information("Button Download where clicked.");
             return this;
         }
-
-        public EpamAboutPageContext VerifyEPAMCompanyOverviewDownloadedFileExist(string fileName, int waitTimeSeconds = 10, bool expectedResolt = true)
-        {
-            string filePath = Path.Combine(windowsDefaultDownloadDirectoryPath, fileName);
-            var actualResult = WaitForFileExist(filePath, waitTimeSeconds);
-            Assert.That(expectedResolt, Is.EqualTo(actualResult), $"File [{fileName}] using file path: [{filePath}] was not found.");
-            return this;
-        }
     }
 }

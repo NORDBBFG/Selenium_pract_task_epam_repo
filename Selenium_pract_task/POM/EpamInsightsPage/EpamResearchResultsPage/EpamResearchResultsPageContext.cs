@@ -1,5 +1,4 @@
-﻿using NUnit.Framework;
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
 using Selenium_pract_task.Entities.AbstractEntities;
 
 namespace Selenium_pract_task.POM.EpamInsightsPage.EpamResearchResultsPage
@@ -13,12 +12,11 @@ namespace Selenium_pract_task.POM.EpamInsightsPage.EpamResearchResultsPage
             epamResearchResultsPage = new EpamResearchResultsPage(driver);
         }
 
-        public EpamResearchResultsPageContext VerifyCountinuumPageTitle(string expectedCountinuumTitle, bool expectedResult = true)
+        public bool VerifyCountinuumPageTitleExist(string expectedCountinuumTitle, out string actualCountinuumTitle)
         {
-            var actualCountinuumTitle = epamResearchResultsPage.ContinuumTitle.Text.Trim();
+            actualCountinuumTitle = epamResearchResultsPage.ContinuumTitle.Text.Trim();
             var actualResult = actualCountinuumTitle.Equals(expectedCountinuumTitle.Trim());
-            Assert.That(expectedResult, Is.EqualTo(actualResult), $"Job title: [{actualCountinuumTitle}], is not equals to expected value: [{expectedCountinuumTitle}].");
-            return this;
+            return actualResult;
         }
     }
 }

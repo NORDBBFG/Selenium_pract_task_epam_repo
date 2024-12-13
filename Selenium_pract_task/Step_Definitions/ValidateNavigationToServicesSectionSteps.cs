@@ -1,4 +1,5 @@
-﻿using Selenium_pract_task.Entities.AbstractEntities;
+﻿using NUnit.Framework;
+using Selenium_pract_task.Entities.AbstractEntities;
 using Selenium_pract_task.POM.EpamArtificialIntelligencePage;
 using Selenium_pract_task.POM.EpamMainPage;
 using TechTalk.SpecFlow;
@@ -26,14 +27,19 @@ namespace Selenium_pract_task.Step_Definitions
         public void ThenIValidateThatThePageContainsTheCorrectTitle(string expectedTitle)
         {
             var epamArtificialIntelligencePageContext = new EpamArtificialIntelligencePageContext(driver);
-            epamArtificialIntelligencePageContext.VerifyAiPageTitleContainsExpectedAiType(expectedTitle);
+            var title = epamArtificialIntelligencePageContext.GetAiPageTitleText(expectedTitle);
+            var actualResult = title.Contains(expectedTitle.ToLower());
+            Assert.That(true, Is.EqualTo(actualResult), $"AiPage title: [{title}], do not contains expected value: [{expectedTitle}].");
+
         }
 
         [Then("I validate that the section 'Our Related Expertise' is displayed on the page")]
         public void ThenIValidateThatTheSectionOurRelatedExpertiseIsDisplayedOnThePage()
         {
             var epamArtificialIntelligencePageContext = new EpamArtificialIntelligencePageContext(driver);
-            epamArtificialIntelligencePageContext.VerifyOurRelatedExpertiseSectionExist();
+            var actualResult = epamArtificialIntelligencePageContext.VerifyOurRelatedExpertiseSectionExist();
+            Assert.That(true, Is.EqualTo(actualResult), $"Our Related Expertise Section is not displayed on the page");
+
         }
     }
 }

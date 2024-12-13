@@ -15,13 +15,12 @@ namespace Selenium_pract_task.POM.EpamJobPage
             wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
         }
 
-        public EpamJobPageContext VerifyJobTitleContainsPrograminLanguage(string value, bool expectedResult = true)
+        public bool VerifyJobTitleContainsPrograminLanguage(string value, out string titleText)
         {
-            string titleText = epamJobPage.JobeTitle.Text.ToLower();
+            titleText = epamJobPage.JobeTitle.Text.ToLower();
             var actualResult = titleText.Contains(value.ToLower());
-            Assert.That(expectedResult, Is.EqualTo(actualResult), $"Job title: [{titleText}], do not contains expected value: [{value}].");
 
-            return this;
+            return actualResult;
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using Selenium_pract_task.Entities.AbstractEntities;
+﻿using NUnit.Framework;
+using Selenium_pract_task.Entities.AbstractEntities;
 using Selenium_pract_task.POM.EpamMainPage;
 using Selenium_pract_task.POM.EpamSearchPage;
 
@@ -34,7 +35,10 @@ namespace Selenium_pract_task.Step_Definitions
         public void ThenIValidateThatAllSearchedLinksContain(string searchFieldValue)
         {
             var epamSearchPageContext = new EpamSearchPageContext(driver);
-            epamSearchPageContext.VerifyAllSerchedLinksContainsSerchedText(searchFieldValue);
+            var list = epamSearchPageContext.GetAllSerchedLinksText();
+            list.ForEach(linkText =>
+            Assert.That(true, Is.EqualTo(linkText.Contains(searchFieldValue.ToLower())),
+                $"Link text: [{linkText}], do not contains expected value: [{searchFieldValue}]."));
         }
     }
 }

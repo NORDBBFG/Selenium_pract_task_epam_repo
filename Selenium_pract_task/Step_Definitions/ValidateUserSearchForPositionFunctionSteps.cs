@@ -1,4 +1,5 @@
-﻿using Selenium_pract_task.Entities.AbstractEntities;
+﻿using NUnit.Framework;
+using Selenium_pract_task.Entities.AbstractEntities;
 using Selenium_pract_task.POM.EpamCareersPage;
 using Selenium_pract_task.POM.EpamJobPage;
 using Selenium_pract_task.POM.EpamMainPage;
@@ -57,7 +58,8 @@ namespace Selenium_pract_task.Step_Definitions
         public void ThenIVerifyJobTitleContainsProgrammingLanguage(string programingLanguage)
         {
             var epamJobPageContext = new EpamJobPageContext(driver);
-            epamJobPageContext.VerifyJobTitleContainsPrograminLanguage(programingLanguage);
+            var actualResult = epamJobPageContext.VerifyJobTitleContainsPrograminLanguage(programingLanguage,out string actualTitleText);
+            Assert.That(true, Is.EqualTo(actualResult), $"Job title: [{actualTitleText}], do not contains expected value: [{programingLanguage}].");
         }
     }
 }

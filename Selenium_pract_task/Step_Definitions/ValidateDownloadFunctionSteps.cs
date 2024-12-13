@@ -1,8 +1,10 @@
 ﻿using Selenium_pract_task.Entities.AbstractEntities;
 using Selenium_pract_task.POM.EpamMainPage;
 using static Selenium_pract_task.Constants.Constants.IOConstants;
+using static Selenium_pract_task.FileHelper.FileHelper;
 using TechTalk.SpecFlow;
 using Selenium_pract_task.POM.EpamAboutPage;
+using NUnit.Framework;
 
 namespace Selenium_pract_task.Step_Definitions
 {
@@ -34,8 +36,9 @@ namespace Selenium_pract_task.Step_Definitions
         [Then(@"I validate that downloaded file name is '(.*)'")]
         public void ThenIValidateThatDownloadedFileNameIs(string expectedFileName)
         {
-            var epamAboutPageContext = new EpamAboutPageContext(driver);
-            epamAboutPageContext.VerifyEPAMCompanyOverviewDownloadedFileExist(expectedFileName);
+            string filePath = Path.Combine(windowsDefaultDownloadDirectoryPath, expectedFileName);
+            var actualResult = WaitForFileExist(filePath, 5);
+            Assert.That(true, Is.EqualTo(actualResult), $"File [{expectedFileName}] using file path: [{filePath}] was not found.");
         }
     }
 }
