@@ -11,5 +11,12 @@ namespace Selenium_pract_task.Entities.AbstractEntities
             var logger = GetLogger();
             logger.Information("Api test setup started.");
         }
+
+        [TearDown]
+        public void TearDown()
+        {
+            var logger = GetLogger();
+            logger.Information("Api test teardown completed.");
+        }
     }
 }
