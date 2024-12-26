@@ -4,6 +4,7 @@ using Selenium_pract_task.Entities.AbstractEntities;
 using static Selenium_pract_task.Constants.Constants.IOConstants;
 using static Selenium_pract_task.Logger.Logger;
 using System.Net;
+using Serilog;
 
 namespace Selenium_pract_task.Tets_Cases.API_Test_Cases
 {
@@ -13,6 +14,7 @@ namespace Selenium_pract_task.Tets_Cases.API_Test_Cases
     public class Users_Service_Tests : BaseApiTest
     {
         private UserService _usersEndpoint;
+        ILogger logger = GetLogger();
 
         [SetUp]
         public void Setup()
@@ -23,10 +25,11 @@ namespace Selenium_pract_task.Tets_Cases.API_Test_Cases
         [Test]
         public void ValidateContentTypeHeaderTest()
         {
-            var logger = GetLogger();
             logger.Information("Starting ValidateContentTypeHeaderTest.");
 
             var response = _usersEndpoint.GetUsersResponse();
+
+            Assert.That(response.StatusCode, Is.EqualTo(HttpStatusCode.OK), $"Expected status code 200 but was: [{response.StatusCode}]");
 
             var contentHeaders = response.ContentHeaders.FirstOrDefault(h => h.Name == "Content-Type")?.Value?.ToString(); ;
 
@@ -41,7 +44,6 @@ namespace Selenium_pract_task.Tets_Cases.API_Test_Cases
         [Test]
         public void ValidateUserCreationTest()
         {
-            var logger = GetLogger();
             logger.Information("Starting ValidateUserCreationTest.");
 
             var response = _usersEndpoint.CreateUser("John Doe", "johndoe");
@@ -59,7 +61,6 @@ namespace Selenium_pract_task.Tets_Cases.API_Test_Cases
         [Test]
         public void ValidateUserNotifiedIfResourceNotExist()
         {
-            var logger = GetLogger();
             logger.Information("Starting ValidateUserNotifiedIfResourceNotExist.");
 
             var invalidEndpoint = new UserService($"{userApiEndpoint}/invalidendpoint");
@@ -72,12 +73,14 @@ namespace Selenium_pract_task.Tets_Cases.API_Test_Cases
         }
 
         [Test]
-        public void ValidateUsersListTest()
+        public void ValidateUsersResponseBodyTest()
         {
-            var logger = GetLogger();
             logger.Information("Starting ValidateUsersListTest.");
 
             var response = _usersEndpoint.GetUsersResponse();
+
+            Assert.That(response.StatusCode, Is.EqualTo(HttpStatusCode.OK), $"Expected status code 200 but was: [{response.StatusCode}]");
+
             var users = _usersEndpoint.DeserializeUsers(response);
 
             Assert.That(users, Is.Not.Null, "Users list is null.");
@@ -94,24 +97,26 @@ namespace Selenium_pract_task.Tets_Cases.API_Test_Cases
         }
 
         [Test]
-        public void ValidateUsersResponseBodyTest()
+        public void ValidateUsersListTest()
         {
-            var logger = GetLogger();
             logger.Information("Starting ValidateUsersResponseBodyTest.");
 
             var response = _usersEndpoint.GetUsersResponse();
-            var users = _usersEndpoint.DeserializeUsers(response);
 
-            Assert.That(users.Count, Is.EqualTo(10), "Expected 10 users.");
-            Assert.That(users.Select(u => u.Id).Distinct().Count(), Is.EqualTo(users.Count),
-                "User IDs are not unique.");
+            Assert.That(response.StatusCode, Is.EqualTo(HttpStatusCode.OK), $"Expected status code 200 but was: [{response.StatusCode}]");
+
+            var users = _usersEndpoint.DeserializeUsers(response);
 
             foreach (var user in users)
             {
+                Assert.That(user.Id, Is.Not.Null, "User Id is null.");
                 Assert.That(user.Name, Is.Not.Null, "User name is null.");
                 Assert.That(user.Username, Is.Not.Null, "User username is null.");
+                Assert.That(user.Email, Is.Not.Null, "User email is null.");
+                Assert.That(user.Address, Is.Not.Null, "User address is null.");
+                Assert.That(user.Phone, Is.Not.Null, "User phone is null.");
+                Assert.That(user.Website, Is.Not.Null, "User website is null.");
                 Assert.That(user.Company, Is.Not.Null, "User company is null.");
-                Assert.That(user.Company.Name, Is.Not.Null, "User company name is null.");
             }
 
             logger.Information("ValidateUsersResponseBodyTest passed successfully.");
