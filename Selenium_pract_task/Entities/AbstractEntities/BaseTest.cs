@@ -20,8 +20,6 @@ namespace Selenium_pract_task.Entities.AbstractEntities
         [SetUp]
         public void Setup()
         {
-            var logger = GetLogger();
-
             try
             {
                 logger.Information("Test setup started.");
@@ -49,8 +47,6 @@ namespace Selenium_pract_task.Entities.AbstractEntities
         [TearDown]
         public void TearDown()
         {
-            var logger = GetLogger();
-
             try
             {
                 if (TestContext.CurrentContext.Result.Outcome.Status == TestStatus.Failed)

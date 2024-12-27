@@ -2,9 +2,7 @@
 using Selenium_pract_task.Endpoints;
 using Selenium_pract_task.Entities.AbstractEntities;
 using static Selenium_pract_task.Constants.Constants.IOConstants;
-using static Selenium_pract_task.Logger.Logger;
 using System.Net;
-using Serilog;
 
 namespace Selenium_pract_task.Tets_Cases.API_Test_Cases
 {
@@ -14,7 +12,6 @@ namespace Selenium_pract_task.Tets_Cases.API_Test_Cases
     public class Users_Service_Tests : BaseApiTest
     {
         private UserService _usersEndpoint;
-        ILogger logger = GetLogger();
 
         [SetUp]
         public void Setup()
@@ -41,18 +38,20 @@ namespace Selenium_pract_task.Tets_Cases.API_Test_Cases
             logger.Information("ValidateContentTypeHeaderTest passed successfully.");
         }
 
-        [Test]
-        public void ValidateUserCreationTest()
+        [TestCase("John Doe", "johndoe")]
+        public void ValidateUserCreationTest(string name, string username)
         {
             logger.Information("Starting ValidateUserCreationTest.");
 
-            var response = _usersEndpoint.CreateUser("John Doe", "johndoe");
+            var response = _usersEndpoint.CreateUser(name, username);
 
             Assert.That(response.StatusCode, Is.EqualTo(HttpStatusCode.Created),
                 "Expected status code 201.");
 
             var responseBody = _usersEndpoint.DeserializeUserCreationResponse(response);
-            Assert.That(responseBody.id, Is.Not.Null,
+            var createdUser = responseBody.id.ToString();
+
+            Assert.That(string.IsNullOrEmpty(createdUser), Is.False,
                 "Response does not contain ID field.");
 
             logger.Information("ValidateUserCreationTest passed successfully.");

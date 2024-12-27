@@ -1,15 +1,18 @@
 ﻿using NUnit.Framework;
+using Serilog;
 using static Selenium_pract_task.Logger.Logger;
 
 namespace Selenium_pract_task.Entities.AbstractEntities
 {
     public abstract class LoggerSetUp
     {
+        public ILogger logger;
+
         [OneTimeSetUp]
         public void GlobalSetup()
         {
             InitializeLogger();
-            var logger = GetLogger();
+            logger = GetLogger();
 
             logger.Information("Global setup started.");
         }
@@ -17,7 +20,6 @@ namespace Selenium_pract_task.Entities.AbstractEntities
         [OneTimeTearDown]
         public void GlobalTearDown()
         {
-            var logger = GetLogger();
             logger.Information("Global teardown completed.");
         }
     }

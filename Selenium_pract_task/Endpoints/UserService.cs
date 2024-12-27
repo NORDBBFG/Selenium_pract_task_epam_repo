@@ -2,6 +2,7 @@
 using RestSharp;
 using Selenium_pract_task.Entities;
 using Selenium_pract_task.Entities.BusinessModels;
+using Serilog;
 using static Selenium_pract_task.Constants.Constants.IOConstants;
 using static Selenium_pract_task.Logger.Logger;
 
@@ -11,6 +12,7 @@ namespace Selenium_pract_task.Endpoints
     {
         private readonly BaseApiClient _client;
         private const string clientsEndpoint = $"{userApiEndpoint}/users";
+        ILogger logger = GetLogger();
 
         public UserService(string endpoint = clientsEndpoint)
         {
@@ -19,7 +21,6 @@ namespace Selenium_pract_task.Endpoints
 
         public RestResponse GetUsersResponse()
         {
-            var logger = GetLogger();
             logger.Information("Sending GET request to fetch users.");
 
             var request = RequestBuilder
@@ -34,7 +35,6 @@ namespace Selenium_pract_task.Endpoints
 
         public RestResponse CreateUser(string name, string username)
         {
-            var logger = GetLogger();
             logger.Information("Sending POST request to create a user.");
 
             var request = RequestBuilder
