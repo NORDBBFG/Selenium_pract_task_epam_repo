@@ -95,30 +95,19 @@ namespace Selenium_pract_task.Tets_Cases.API_Test_Cases
             logger.Information("ValidateUsersListTest passed successfully.");
         }
 
-        [Test]
-        public void ValidateUsersListTest()
+        [TestCase("user_schema.json")]
+        public void ValidateUsersListTest(string schemaName)
         {
-            logger.Information("Starting ValidateUsersResponseBodyTest.");
+            logger.Information("Starting ValidateUsersJsonSchemaTest.");
 
             var response = _usersEndpoint.GetUsersResponse();
 
             Assert.That(response.StatusCode, Is.EqualTo(HttpStatusCode.OK), $"Expected status code 200 but was: [{response.StatusCode}]");
 
-            var users = _usersEndpoint.DeserializeUsers(response);
+            var isValid = _usersEndpoint.ValidateJsonAgainstSchema(response.Content, schemaName);
+            Assert.That(isValid, Is.True, "JSON does not match the schema.");
 
-            foreach (var user in users)
-            {
-                Assert.That(user.Id, Is.Not.Null, "User Id is null.");
-                Assert.That(user.Name, Is.Not.Null, "User name is null.");
-                Assert.That(user.Username, Is.Not.Null, "User username is null.");
-                Assert.That(user.Email, Is.Not.Null, "User email is null.");
-                Assert.That(user.Address, Is.Not.Null, "User address is null.");
-                Assert.That(user.Phone, Is.Not.Null, "User phone is null.");
-                Assert.That(user.Website, Is.Not.Null, "User website is null.");
-                Assert.That(user.Company, Is.Not.Null, "User company is null.");
-            }
-
-            logger.Information("ValidateUsersResponseBodyTest passed successfully.");
+            logger.Information("ValidateUsersJsonSchemaTest passed successfully.");
         }
     }
 }

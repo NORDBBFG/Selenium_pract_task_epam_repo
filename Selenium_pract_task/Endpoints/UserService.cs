@@ -1,4 +1,6 @@
 ﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using Newtonsoft.Json.Schema;
 using RestSharp;
 using Selenium_pract_task.Entities;
 using Selenium_pract_task.Entities.BusinessModels;
@@ -57,6 +59,21 @@ namespace Selenium_pract_task.Endpoints
         public dynamic DeserializeUserCreationResponse(RestResponse response)
         {
             return JsonConvert.DeserializeObject<dynamic>(response.Content);
+        }
+
+        public bool ValidateJsonAgainstSchema(string jsonResponse, string schemaName)
+        {
+            var schemaPath = Path.Combine(defaultJsonSchemaPath, schemaName);
+
+            if (!File.Exists(schemaPath))
+            {
+                throw new FileNotFoundException($"JSON schema file not found at path: {schemaPath}");
+            }
+
+            var schema = JSchema.Parse(File.ReadAllText(schemaPath));
+
+            var json = JToken.Parse(jsonResponse);
+            return json.IsValid(schema, out IList<string> errors);
         }
     }
 }
