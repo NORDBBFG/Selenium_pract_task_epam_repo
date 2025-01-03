@@ -10,31 +10,20 @@ using static Selenium_pract_task.Logger.Logger;
 namespace Selenium_pract_task.Entities.AbstractEntities
 {
     [SetUpFixture]
-    public abstract class BaseTest
+    public abstract class BaseTest : LoggerSetUp
     {
         protected IWebDriver driver;
         private IConfiguration _browserConfig;
         private readonly string baseUrl = "https://www.epam.com";
         private string headlesRunStatus = "true";
 
-        [OneTimeSetUp]
-        public void GlobalSetup()
-        {
-            InitializeLogger();
-            var logger = GetLogger();
-
-            logger.Information("Global setup started.");
-            logger.Information("Reading browser configuration...");
-        }
-
         [SetUp]
         public void Setup()
         {
-            var logger = GetLogger();
-
             try
             {
                 logger.Information("Test setup started.");
+                logger.Information("Reading browser configuration...");
 
                 JsonHelper.EnsureJsonFileExists();
                 EnvironmentVariableHelper.EnsureEnvironmentVariableExist(headlesStateEnvironmentVariableName, headlesRunStatus);
@@ -58,8 +47,6 @@ namespace Selenium_pract_task.Entities.AbstractEntities
         [TearDown]
         public void TearDown()
         {
-            var logger = GetLogger();
-
             try
             {
                 if (TestContext.CurrentContext.Result.Outcome.Status == TestStatus.Failed)
@@ -85,13 +72,6 @@ namespace Selenium_pract_task.Entities.AbstractEntities
                 DriverManager.Instance.QuitDriver();
                 logger.Information("Driver closed.");
             }
-        }
-
-        [OneTimeTearDown]
-        public void GlobalTearDown()
-        {
-            var logger = GetLogger();
-            logger.Information("Global teardown completed.");
         }
     }
 }
