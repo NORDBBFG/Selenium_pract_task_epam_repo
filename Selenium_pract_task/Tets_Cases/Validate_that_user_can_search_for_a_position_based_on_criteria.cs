@@ -5,6 +5,7 @@ using Selenium_pract_task.POM.EpamMainPage;
 namespace Selenium_pract_task.Tets_Cases
 {
     [TestFixture]
+    [Category("UI")]
     public class Validate_that_user_can_search_for_a_position_based_on_criteria : BaseTest
     {
         [TestCase("Java")]

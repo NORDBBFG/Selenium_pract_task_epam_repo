@@ -5,6 +5,7 @@ using Selenium_pract_task.POM.EpamMainPage;
 namespace Selenium_pract_task.Tets_Cases
 {
     [TestFixture]
+    [Category("UI")]
     public class Validate_global_search_works_as_expected : BaseTest
     {
         [TestCase("BLOCKCHAIN")]

@@ -5,7 +5,6 @@ using Selenium_pract_task.FileHelper;
 using static Selenium_pract_task.Constants.Constants.IOConstants;
 using static Selenium_pract_task.FileHelper.ScreenshotHelper;
 using NUnit.Framework.Interfaces;
-using static Selenium_pract_task.Logger.Logger;
 
 namespace Selenium_pract_task.Entities.AbstractEntities
 {
@@ -27,12 +26,15 @@ namespace Selenium_pract_task.Entities.AbstractEntities
 
                 JsonHelper.EnsureJsonFileExists();
                 EnvironmentVariableHelper.EnsureEnvironmentVariableExist(headlesStateEnvironmentVariableName, headlesRunStatus);
+                
                 var configPath = Path.Combine(Directory.GetCurrentDirectory(), "browserconfig.json");
                 _browserConfig = new ConfigurationBuilder()
                     .AddJsonFile(configPath)
                     .Build();
+
                 string browser = _browserConfig["Browser"];
                 bool isHeadless = Environment.GetEnvironmentVariable("HEADLESS")?.ToLower() == "true";
+                
                 driver = DriverManager.Instance.GetDriver(browser, isHeadless, baseUrl);
 
                 logger.Information($"Browser initialized: {browser}, Headless mode: {isHeadless}");

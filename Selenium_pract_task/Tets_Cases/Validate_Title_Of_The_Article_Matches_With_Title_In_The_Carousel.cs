@@ -5,6 +5,7 @@ using Selenium_pract_task.POM.EpamMainPage;
 namespace Selenium_pract_task.Tets_Cases
 {
     [TestFixture]
+    [Category("UI")]
     public class Validate_Title_Of_The_Article_Matches_With_Title_In_The_Carousel : BaseTest
     {
         private string activeSliderText;

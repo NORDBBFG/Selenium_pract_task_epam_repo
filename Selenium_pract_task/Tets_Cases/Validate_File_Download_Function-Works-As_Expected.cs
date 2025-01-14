@@ -6,6 +6,7 @@ using static Selenium_pract_task.Constants.Constants.IOConstants;
 namespace Selenium_pract_task.Tets_Cases
 {
     [TestFixture]
+    [Category("UI")]
     public class Validate_File_Download_Function_Works_As_Expected : BaseTest
     {
 
