@@ -1,0 +1,49 @@
+name: CI Pipeline
+
+on:
+  pull_request:
+    branches:
+      - main
+      - cicd_settings
+  push:
+    branches:
+      - main
+      - cicd_settings
+  workflow_dispatch:
+    inputs:
+      browser:
+        description: 'Select browser for UI tests'
+        required: true
+        default: 'chrome'
+        type: choice
+        options:
+          - chrome
+          - firefox
+          - edge
+
+jobs:
+  tests:
+    runs-on: windows-latest
+    strategy:
+      matrix:
+        category: [API, UI]
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up .NET SDK
+        uses: actions/setup-dotnet@v2
+        with:
+          dotnet-version: '7.0'
+
+      - name: Restore dependencies
+        run: dotnet restore
+
+      - name: Run tests
+        env:
+          BROWSER: ${{ github.event.inputs.browser }}
+        run: |
+          if (${{ matrix.category }} -eq "UI") {
+            Write-Host "Running UI tests with browser $env:BROWSER"
+          }
+          dotnet test --filter "Category=${{ matrix.category }}"
