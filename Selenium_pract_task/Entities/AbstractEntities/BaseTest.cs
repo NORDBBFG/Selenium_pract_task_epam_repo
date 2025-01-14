@@ -32,7 +32,7 @@ namespace Selenium_pract_task.Entities.AbstractEntities
                     .AddJsonFile(configPath)
                     .Build();
 
-                string browser = _browserConfig["Browser"];
+                string browser = Environment.GetEnvironmentVariable("BROWSER") ?? _browserConfig["Browser"];
                 bool isHeadless = Environment.GetEnvironmentVariable("HEADLESS")?.ToLower() == "true";
                 
                 driver = DriverManager.Instance.GetDriver(browser, isHeadless, baseUrl);
