@@ -42,8 +42,9 @@ jobs:
       - name: Run tests
         env:
           BROWSER: ${{ github.event.inputs.browser }}
+          CATEGORY: ${{ matrix.category }}
         run: |
-          if (${{ matrix.category }} -eq "UI") {
+          if ($env:CATEGORY -eq "UI") {
             Write-Host "Running UI tests with browser $env:BROWSER"
           }
-          dotnet test --filter "Category=${{ matrix.category }}"
+          dotnet test --filter "Category=$env:CATEGORY"
