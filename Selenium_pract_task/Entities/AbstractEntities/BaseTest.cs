@@ -33,11 +33,13 @@ namespace Selenium_pract_task.Entities.AbstractEntities
                     .AddJsonFile(configPath)
                     .Build();
 
-                string browser = Environment.GetEnvironmentVariable("BROWSER") ?? _browserConfig["Browser"];
+                string browser = Environment.GetEnvironmentVariable("BROWSER") ?? _browserConfig["Browser"] ?? "chrome";
                 bool isHeadless = Environment.GetEnvironmentVariable("HEADLESS")?.ToLower() == "true";
-                
+
                 driver = DriverManager.Instance.GetDriver(browser, isHeadless, baseUrl);
 
+                logger.Information($"Environment variable BROWSER: {Environment.GetEnvironmentVariable("BROWSER")}");
+                logger.Information($"Configuration file browser: {_browserConfig["Browser"]}");
                 logger.Information($"Browser initialized: {browser}, Headless mode: {isHeadless}");
             }
             catch (Exception ex)
