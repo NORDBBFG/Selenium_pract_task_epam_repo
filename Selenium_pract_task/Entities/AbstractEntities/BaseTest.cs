@@ -15,6 +15,7 @@ namespace Selenium_pract_task.Entities.AbstractEntities
         private IConfiguration _browserConfig;
         private readonly string baseUrl = "https://www.epam.com";
         private string headlesRunStatus = "true";
+        private string dummy;
 
         [SetUp]
         public void Setup()
