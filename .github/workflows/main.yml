@@ -3,11 +3,11 @@ name: CI Pipeline
 on:
   pull_request:
     branches:
-      - main
+      - master
       - cicd_settings
   push:
     branches:
-      - main
+      - master
       - cicd_settings
   workflow_dispatch:
     inputs:
