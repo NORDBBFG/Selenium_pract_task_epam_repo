@@ -41,7 +41,7 @@ jobs:
 
       - name: Run tests
         env:
-          BROWSER: ${{ github.event.inputs.browser }}
+          BROWSER: ${{ github.event.inputs.browser || 'chrome' }}
           CATEGORY: ${{ matrix.category }}
         run: |
           if ($env:CATEGORY -eq "UI") {
