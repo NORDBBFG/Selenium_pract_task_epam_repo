@@ -38,15 +38,6 @@ jobs:
         with:
           dotnet-version: '8.0.x'
 
-      - name: Ensure directories for artifacts exist
-        run: |
-          if (!(Test-Path -Path "Screenshots")) {
-            New-Item -ItemType Directory -Path "Screenshots"
-          }
-          if (!(Test-Path -Path "TestResults")) {
-            New-Item -ItemType Directory -Path "TestResults"
-          }
-
       - name: Run tests
         env:
           BROWSER: ${{ github.event.inputs.browser || 'chrome' }}
@@ -56,12 +47,6 @@ jobs:
             Write-Host "Running UI tests with browser $env:BROWSER"
           }
           dotnet test --filter "Category=$env:CATEGORY" --logger "trx;LogFileName=TestResults/TestResults_$env:CATEGORY.trx"
-
-      - name: Upload test results
-        uses: actions/upload-artifact@v3
-        with:
-          name: test-results
-          path: TestResults/*.trx
 
       - name: Upload screenshots
         if: always()
