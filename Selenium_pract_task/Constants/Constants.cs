@@ -6,6 +6,7 @@
         {
             public static readonly string windowsDefaultDownloadDirectoryPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "Downloads");
             public static readonly string defaultJsonSchemaPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..", "..", "..", "Endpoints");
+            public static readonly string currentProjectBaseDirectory = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..", "..", "..", "..");
             public const string EPAMCorporateOverviewFileNeame = "EPAM_Corporate_Overview_Q4_EOY.pdf";
             public static readonly string headlesStateEnvironmentVariableName = "HEADLESS";
             public const string userApiEndpoint = "https://jsonplaceholder.typicode.com";

@@ -4,6 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Selenium_pract_task.FileHelper;
 using static Selenium_pract_task.Constants.Constants.IOConstants;
 using static Selenium_pract_task.FileHelper.ScreenshotHelper;
+using static Selenium_pract_task.FileHelper.FileHelper;
 using NUnit.Framework.Interfaces;
 
 namespace Selenium_pract_task.Entities.AbstractEntities
@@ -15,6 +16,7 @@ namespace Selenium_pract_task.Entities.AbstractEntities
         private IConfiguration _browserConfig;
         private readonly string baseUrl = "https://www.epam.com";
         private string headlesRunStatus = "true";
+        private string artifactDirName = "Screenshots"; 
 
         [SetUp]
         public void Setup()
@@ -26,6 +28,7 @@ namespace Selenium_pract_task.Entities.AbstractEntities
 
                 JsonHelper.EnsureJsonFileExists();
                 EnvironmentVariableHelper.EnsureEnvironmentVariableExist(headlesStateEnvironmentVariableName, headlesRunStatus);
+                EnsureDirectoryExist(currentProjectBaseDirectory, artifactDirName);
                 
                 var configPath = Path.Combine(Directory.GetCurrentDirectory(), "browserconfig.json");
                 _browserConfig = new ConfigurationBuilder()
