@@ -53,16 +53,9 @@ jobs:
           }
           dotnet test --filter "Category=$env:CATEGORY" --logger "trx;LogFileName=TestResults/TestResults_$env:CATEGORY.trx"
 
-      - name: Upload screenshot if test fails
-        if: failure()
-        uses: actions/upload-artifact@v4.6.0
-        with:
-          name: screenshots
-          path: ${{ github.workspace }}/ArtifactsFoulder/*.png
-
       - name: Upload screenshots
         if: failure()  # Выполняется, если тесты упали
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4.6.0
         with:
           name: failed-screenshots
           path: ./ArtifactsFoulder/*.png
