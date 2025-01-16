@@ -20,6 +20,8 @@ on:
           - chrome
           - firefox
           - edge
+  schedule:
+    - cron: '0 18 * * *'
 
 jobs:
   tests:
@@ -36,8 +38,14 @@ jobs:
         with:
           dotnet-version: '8.0.x'
 
-      - name: Restore dependencies
-        run: dotnet restore
+      - name: Ensure directories for artifacts exist
+        run: |
+          if (!(Test-Path -Path "Screenshots")) {
+            New-Item -ItemType Directory -Path "Screenshots"
+          }
+          if (!(Test-Path -Path "TestResults")) {
+            New-Item -ItemType Directory -Path "TestResults"
+          }
 
       - name: Run tests
         env:
@@ -47,4 +55,17 @@ jobs:
           if ($env:CATEGORY -eq "UI") {
             Write-Host "Running UI tests with browser $env:BROWSER"
           }
-          dotnet test --filter "Category=$env:CATEGORY"
+          dotnet test --filter "Category=$env:CATEGORY" --logger "trx;LogFileName=TestResults/TestResults_$env:CATEGORY.trx"
+
+      - name: Upload test results
+        uses: actions/upload-artifact@v3
+        with:
+          name: test-results
+          path: TestResults/*.trx
+
+      - name: Upload screenshots
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: screenshots
+          path: Screenshots/*.png
