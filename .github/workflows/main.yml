@@ -38,9 +38,6 @@ jobs:
         with:
           dotnet-version: '8.0.x'
 
-      - name: Restore dependencies
-        run: dotnet restore
-
       - name: Ensure directories for artifacts exist
         run: |
           if (!(Test-Path -Path "Screenshots")) {
@@ -61,14 +58,14 @@ jobs:
           dotnet test --filter "Category=$env:CATEGORY" --logger "trx;LogFileName=TestResults/TestResults_$env:CATEGORY.trx"
 
       - name: Upload test results
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: test-results
           path: TestResults/*.trx
 
       - name: Upload screenshots
-        if: always() # Загружаем даже при провале тестов
-        uses: actions/upload-artifact@v2
+        if: always()
+        uses: actions/upload-artifact@v3
         with:
           name: screenshots
           path: Screenshots/*.png
