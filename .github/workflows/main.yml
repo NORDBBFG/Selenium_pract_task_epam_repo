@@ -54,3 +54,10 @@ jobs:
         with:
           name: screenshots
           path: ${{ github.workspace }}/ArtifactsFoulder/*.png
+
+      - name: Upload screenshots
+        if: failure()  # Выполняется, если тесты упали
+        uses: actions/upload-artifact@v3
+        with:
+          name: failed-screenshots
+          path: ./ArtifactsFoulder/*.png
