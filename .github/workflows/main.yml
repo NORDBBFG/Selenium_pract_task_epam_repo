@@ -38,11 +38,6 @@ jobs:
         with:
           dotnet-version: '8.0.x'
 
-      - name: Check if ArtifactsFoulder exists
-        run: |
-          dir $GITHUB_WORKSPACE/Selenium_pract_task/ArtifactsFoulder
-
-
       - name: Run tests
         env:
           BROWSER: ${{ github.event.inputs.browser || 'chrome' }}
