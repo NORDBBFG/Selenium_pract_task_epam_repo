@@ -51,4 +51,4 @@ jobs:
       - name: Debug environment variables
         run: |
           echo List of environment variables:
-          set
+          Get-ChildItem Env:
