@@ -41,7 +41,7 @@ jobs:
       - name: Debug screenshots folder
         run: |
           echo "Checking ArtifactsFoulder"
-          dir $GITHUB_WORKSPACE/Selenium_pract_task/ArtifactsFoulder
+          dir ./ArtifactsFoulder
 
       - name: Run tests
         env:
@@ -58,4 +58,4 @@ jobs:
         uses: actions/upload-artifact@v4.6.0
         with:
           name: failed-screenshots
-          path: ./ArtifactsFoulder/*.png
+          path: ./ArtifactsFoulder
