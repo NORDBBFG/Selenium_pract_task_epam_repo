@@ -40,7 +40,7 @@ jobs:
 
       - name: Check if ArtifactsFoulder exists
         run: |
-          dir $GITHUB_WORKSPACE/Selenium_pract_task_epam_repo/Selenium_pract_task/ArtifactsFoulder
+          dir $GITHUB_WORKSPACE/Selenium_pract_task/ArtifactsFoulder
 
 
       - name: Run tests
