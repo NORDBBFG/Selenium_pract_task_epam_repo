@@ -38,10 +38,10 @@ jobs:
         with:
           dotnet-version: '8.0.x'
 
-      - name: Debug screenshots folder
+      - name: List all files and directories
         run: |
-          echo "Checking ArtifactsFoulder"
-          dir $GITHUB_WORKSPACE/Selenium_pract_task/ArtifactsFoulder/
+          dir $GITHUB_WORKSPACE -Recurse
+
 
       - name: Run tests
         env:
