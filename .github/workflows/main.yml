@@ -38,9 +38,6 @@ jobs:
         with:
           dotnet-version: '8.0.x'
 
-      - name: List project files
-        run: dir /s
-
       - name: Run tests with detailed output
         env:
           BROWSER: ${{ github.event.inputs.browser || 'chrome' }}
