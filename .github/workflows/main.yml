@@ -38,7 +38,10 @@ jobs:
         with:
           dotnet-version: '8.0.x'
 
-      - name: Run tests
+      - name: List project files
+        run: dir /s
+
+      - name: Run tests with detailed output
         env:
           BROWSER: ${{ github.event.inputs.browser || 'chrome' }}
           CATEGORY: ${{ matrix.category }}
@@ -46,11 +49,9 @@ jobs:
           if ($env:CATEGORY -eq "UI") {
             Write-Host "Running UI tests with browser $env:BROWSER"
           }
-          dotnet test --filter "Category=$env:CATEGORY" --logger "trx;LogFileName=TestResults/TestResults_$env:CATEGORY.trx"
+          dotnet test --filter "Category=$env:CATEGORY" --logger "trx;LogFileName=TestResults/TestResults_$env:CATEGORY.trx" --verbosity normal
 
-      - name: Upload screenshots
-        if: failure()  # Выполняется, если тесты упали
-        uses: actions/upload-artifact@v4.6.0
-        with:
-          name: failed-screenshots
-          path: ./ArtifactsFoulder
+      - name: Debug environment variables
+        run: |
+          echo List of environment variables:
+          set
