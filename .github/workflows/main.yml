@@ -41,7 +41,7 @@ jobs:
       - name: Debug screenshots folder
         run: |
           echo "Checking ArtifactsFoulder"
-          dir ./ArtifactsFoulder
+          dir $GITHUB_WORKSPACE/Selenium_pract_task/ArtifactsFoulder/
 
       - name: Run tests
         env:
