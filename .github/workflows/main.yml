@@ -20,8 +20,6 @@ on:
           - chrome
           - firefox
           - edge
-  schedule:
-    - cron: '0 18 * * *'
 
 jobs:
   tests:
