@@ -48,7 +48,6 @@ jobs:
         continue-on-error: true
 
       - name: Upload screenshots if tests fail
-        if: failure()
         uses: actions/upload-artifact@v3
         with:
           name: failed-screenshots
