@@ -14,7 +14,7 @@ namespace Selenium_pract_task.Entities.AbstractEntities
         protected IWebDriver driver;
         private IConfiguration _browserConfig;
         private readonly string baseUrl = "https://www.epam.com";
-        private string headlesRunStatus = "true";
+        private string headlesRunStatus = "false";
         private string artifactDirName = "Screenshots"; 
 
         [SetUp]
@@ -34,7 +34,7 @@ namespace Selenium_pract_task.Entities.AbstractEntities
                     .Build();
 
                 string browser = Environment.GetEnvironmentVariable("BROWSER") ?? _browserConfig["Browser"] ?? "chrome";
-                bool isHeadless = Environment.GetEnvironmentVariable("HEADLESS")?.ToLower() == "true";
+                bool isHeadless = Environment.GetEnvironmentVariable("HEADLESS")?.ToLower() == "false";
 
                 driver = DriverManager.Instance.GetDriver(browser, isHeadless, baseUrl);
 
