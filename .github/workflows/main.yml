@@ -47,11 +47,18 @@ jobs:
           dotnet test --filter "Category=$env:CATEGORY" --logger "trx;LogFileName=TestResults/TestResults_$env:CATEGORY.trx"
         continue-on-error: true
 
-      - name: Publish Test Results
+      - name: Publish Test screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: screenshots
+          path: |
+            **/failedScreenshots/
+
+      - name: Publish Test logs
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: logs
           path: |
             **/logs/
-            **/ArtifactsFoulder/
