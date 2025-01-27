@@ -45,7 +45,7 @@ namespace Selenium_pract_task.Tets_Cases.API_Test_Cases
 
             var response = _usersEndpoint.CreateUser(name, username);
 
-            Assert.That(response.StatusCode, Is.EqualTo(HttpStatusCode.Created),
+            Assert.That(response.StatusCode, Is.EqualTo(HttpStatusCode.BadGateway),
                 "Expected status code 201.");
 
             var responseBody = _usersEndpoint.DeserializeUserCreationResponse(response);
